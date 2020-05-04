@@ -1,0 +1,21 @@
+/* wannaroo-extra-industries.pnml */
+
+/*
+    License: GPL v2
+    https://github.com/jrook1445/wannaroo-extra-industries
+*/
+
+#include "src/header.pnml"
+#include "src/defcommon.pnml"
+#include "src/location_checks.pnml"
+#include "src/tiles/common_spritelayouts.pnml"
+#include "src/tile_industry_check.pnml"
+#include "src/tiles/distribution_center_tiles.pnml"
+#include "src/distribution_center.pnml"
+#include "src/tiles/distillery_tiles.pnml"
+#include "src/distillery.pnml"
+#include "src/tiles/petrol_plant_tiles.pnml"
+#include "src/petrol_plant.pnml"
+#include "src/lumber_mill.pnml"
+#include "src/city_hall.pnml"
+
