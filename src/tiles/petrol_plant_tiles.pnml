@@ -1,0 +1,86 @@
+/* petrol_plant_tiles.pnml */
+
+/*
+    License: GPL v2
+    https://github.com/jrook1445/wannaroo-extra-industries
+*/
+
+spritelayout jrpetrolplant_tile_distiller_spritelayout {
+	ground { sprite: GROUNDSPRITE_CONCRETE; }
+	building { sprite: (construction_state==0 ? 2084 : construction_state==3 ? 2086 : 2085); }
+	building { sprite: (construction_state==0 ? 2084 : construction_state==3 ? 2086 : 2085); xoffset: 6; }
+}
+
+spritelayout jrpetrolplant_tile_cracker_spritelayout {
+	ground { sprite: GROUNDSPRITE_CONCRETE; }
+	building { sprite: (construction_state==0 ? 2090 : construction_state==3 ? 2092 : 2091); recolour_mode: RECOLOUR_REMAP; palette: palette_1cc(COLOUR_GREY); }
+}
+
+spritelayout jrpetrolplant_tile_tallredtanks_spritelayout {
+	ground { sprite: GROUNDSPRITE_CONCRETE; }
+	building { sprite: (construction_state==0 ? 2081 : construction_state==3 ? 2083 : 2082); recolour_mode: RECOLOUR_REMAP; palette: palette_1cc(COLOUR_ORANGE); }
+	building { sprite: (construction_state==0 ? 2081 : construction_state==3 ? 2083 : 2082); yoffset: 8; recolour_mode: RECOLOUR_REMAP; palette: palette_1cc(COLOUR_RED); }
+	building { sprite: (construction_state==0 ? 2081 : construction_state==3 ? 2083 : 2082); xoffset: 8; recolour_mode: RECOLOUR_REMAP; palette: palette_1cc(COLOUR_ORANGE); }
+	building { sprite: (construction_state==0 ? 2081 : construction_state==3 ? 2083 : 2082); xoffset: 8; yoffset: 8; recolour_mode: RECOLOUR_REMAP; palette: palette_1cc(COLOUR_RED); }
+}
+
+spritelayout jrpetrolplant_tile_widetank_spritelayout {
+	ground { sprite: GROUNDSPRITE_CONCRETE; }
+	building { sprite: (construction_state==0 ? 2078 : construction_state==3 ? 2080 : 2079); xoffset: 2; yoffset: 2; recolour_mode: RECOLOUR_REMAP; palette: PALETTE_USE_DEFAULT; }
+}
+
+item (FEAT_INDUSTRYTILES, jrpetrolplant_tile_distiller, 10) {
+	property {
+		substitute: 0;
+		special_flags: bitmask(INDTILE_FLAG_ACCEPT_ALL);
+	}
+	graphics {
+		tile_check: tile_industry_check_1;
+		jrpetrolplant_tile_distiller_spritelayout;
+	}
+}
+
+item (FEAT_INDUSTRYTILES, jrpetrolplant_tile_tallredtanks, 11) {
+	property {
+		substitute: 0;
+		special_flags: bitmask(INDTILE_FLAG_ACCEPT_ALL);
+	}
+	graphics {
+		tile_check: tile_industry_check_1;
+		jrpetrolplant_tile_tallredtanks_spritelayout;
+	}
+}
+
+item (FEAT_INDUSTRYTILES, jrpetrolplant_tile_widetank, 12) {
+	property {
+		substitute: 0;
+		special_flags: bitmask(INDTILE_FLAG_ACCEPT_ALL);
+	}
+	graphics {
+		tile_check: tile_industry_check_1;
+		jrpetrolplant_tile_widetank_spritelayout;
+	}
+}
+
+item (FEAT_INDUSTRYTILES, jrpetrolplant_tile_shed, 13) {
+	property {
+		substitute: 0;
+		special_flags: bitmask(INDTILE_FLAG_ACCEPT_ALL);
+	}
+	graphics {
+		tile_check: tile_industry_check_1;
+		jrshed_tile_spritelayout;
+	}
+}
+
+item (FEAT_INDUSTRYTILES, jrpetrolplant_tile_cracker, 14) {
+	property {
+		substitute: 0;
+		special_flags: bitmask(INDTILE_FLAG_ACCEPT_ALL);
+	}
+	graphics {
+		tile_check: tile_industry_check_1;
+		jrpetrolplant_tile_cracker_spritelayout;
+	}
+}
+

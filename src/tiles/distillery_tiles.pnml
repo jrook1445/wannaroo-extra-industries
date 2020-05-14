@@ -1,0 +1,61 @@
+/* distillery_tiles.pnml */
+
+/*
+    License: GPL v2
+    https://github.com/jrook1445/wannaroo-extra-industries
+*/
+
+spritelayout jrdistillery_tile_boiler_spritelayout {
+	ground { sprite: GROUNDSPRITE_CONCRETE; }
+	building { sprite: (construction_state==0 ? 2191 : construction_state==3 ? 2193 : 2192); recolour_mode: RECOLOUR_REMAP; palette: PALETTE_USE_DEFAULT; }
+}
+
+spritelayout jrdistillery_tile_yard_spritelayout {
+	ground { sprite: GROUNDSPRITE_CONCRETE; }
+	building { sprite: 2199; }
+}
+
+item (FEAT_INDUSTRYTILES, jrdistillery_tile_warehouse, 6) {
+	property {
+		substitute: 0;
+		special_flags: bitmask(INDTILE_FLAG_ACCEPT_ALL);
+	}
+	graphics {
+		tile_check: tile_industry_check_1;
+		jrwarehouse_tile_spritelayout;
+	}
+}
+
+item (FEAT_INDUSTRYTILES, jrdistillery_tile_yard, 7) {
+	property {
+		substitute: 0;
+		special_flags: bitmask(INDTILE_FLAG_ACCEPT_ALL);
+	}
+	graphics {
+		tile_check: tile_industry_check_1;
+		jrdistillery_tile_yard_spritelayout;
+	}
+}
+
+item (FEAT_INDUSTRYTILES, jrdistillery_tile_boiler, 8) {
+	property {
+		substitute: 0;
+		special_flags: bitmask(INDTILE_FLAG_ACCEPT_ALL);
+	}
+	graphics {
+		tile_check: tile_industry_check_1;
+		jrdistillery_tile_boiler_spritelayout;
+	}
+}
+
+item (FEAT_INDUSTRYTILES, jrdistillery_tile_tank, 9) {
+	property {
+		substitute: 0;
+		special_flags: bitmask(INDTILE_FLAG_ACCEPT_ALL);
+	}
+	graphics {
+		tile_check: tile_industry_check_1;
+		jrredtank_tile_spritelayout;
+	}
+}
+

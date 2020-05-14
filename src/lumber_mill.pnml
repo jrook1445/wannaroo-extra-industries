@@ -1,0 +1,57 @@
+/* lumber_mill.pnml */
+
+/*
+    License: GPL v2
+    https://github.com/jrook1445/wannaroo-extra-industries
+*/
+
+if (param_enable_lumber_mill) {
+
+    if (!cargotype_available("WOOD")) {
+
+	    item(FEAT_CARGOS, cargo_wood, 63) {
+		    property {
+			    type_name: TTD_STR_CARGO_PLURAL_WOOD;
+			    unit_name: TTD_STR_CARGO_SINGULAR_WOOD;
+			    type_abbreviation: TTD_STR_ABBREV_WOOD;
+			    sprite: 4304;
+			    weight: 1.0;
+			    station_list_colour: 55;
+			    cargo_payment_list_colour: 55;
+			    is_freight: 1;
+			    cargo_classes: bitmask(CC_PIECE_GOODS);
+			    town_growth_effect: TOWNGROWTH_NONE;
+			    town_growth_multiplier: 1.0;
+			    units_of_cargo: TTD_STR_TONS;
+			    items_of_cargo: TTD_STR_QUANTITY_WOOD;
+			    penalty_lowerbound: 24;
+			    single_penalty_length: 255;
+			    price_factor: 97;
+			    capacity_multiplier: 1;
+			    cargo_label: "WOOD";
+			    number: 63;
+		    }
+		    if (climate == CLIMATE_TROPIC) {
+			    property {
+				    price_factor: 154;
+			    }
+		    }
+	    }
+    }
+
+	item (FEAT_INDUSTRIES, industry_lumbermill, IND_LUMBER_MILL) {
+		property {
+			substitute:			    INDUSTRYTYPE_LUMBER_MILL;
+			override:			    INDUSTRYTYPE_LUMBER_MILL;
+			conflicting_ind_types:	[];
+			cargo_types:            [produce_cargo("WOOD", 0)];
+			map_colour:			    86;
+			prob_map_gen: 			0;
+			prob_in_game: 			0;
+		}
+		graphics {
+		    location_check:			lumber_mill_check_location;
+		}
+	}
+}
+

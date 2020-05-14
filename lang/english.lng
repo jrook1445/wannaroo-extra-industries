@@ -1,0 +1,71 @@
+##grflangid 0x00
+##plural 0
+STR_GRF_NAME                                :Wannaroo Extra Industries (WRExInd)
+STR_GRF_DESCRIPTION                         :{}Wannaroo Extra Industries is ...{}{}License: GPL v2
+STR_GRF_URL                                 :https://github.com/jrook1445/wannaroo-extra-industries
+
+#Error strings
+
+STR_ERR_NO_TOYLAND                          :{STRING} is not designed to work with toyland climate.
+
+#Industry names
+
+STR_DISTCENTER_NAME						    :Distribution Center
+STR_DISTILLERY_NAME						    :Distillery
+STR_PETROL_PLANT_NAME						:Hydrocracking Plant
+STR_CITY_HALL_NAME						    :City Hall
+
+#Station names
+
+STR_DISTCENTER_STATION_NAME					:{STRING} Distribution Center
+STR_LUMBER_MILL_STATION_NAME				:{STRING} Lumber Mill
+STR_DISTILLERY_STATION_NAME					:{STRING} Distillery
+STR_PETROL_PLANT_STATION_NAME				:{STRING} Hydrocracking Plant
+STR_CITY_HALL_STATION_NAME					:{STRING} City Hall
+
+#Industry debug text
+
+STR_INDUSTRY_CITY_HALL_INFO_TEXT_METRO				:{}{SILVER}Metropolis{BLACK}{}{}{TINYFONT}Population limit:{}10,000 (1800){}20,000 (1900){}30,000 (2000){}{}population: {COMMA}{}city flag: {COMMA}{}town class: {COMMA}
+STR_INDUSTRY_CITY_HALL_INFO_TEXT_IND_CITY			:{}{SILVER}Industrial City{BLACK}{}{}{TINYFONT}Population limit:{}5,000 (1800){}10,000 (1900){}15,000 (2000){}{}population: {COMMA}{}city flag: {COMMA}{}town class: {COMMA}
+STR_INDUSTRY_CITY_HALL_INFO_TEXT_SMALL_CITY			:{}{SILVER}Small City{BLACK}{}{}{TINYFONT}Population limit:{}2,000 (1800){}5,000 (1900){}8,000 (2000){}{}population: {COMMA}{}city flag: {COMMA}{}town class: {COMMA}
+STR_INDUSTRY_CITY_HALL_INFO_TEXT_IND_TOWN			:{}{SILVER}Industrial Town{BLACK}{}{}{TINYFONT}Population limit:{}1,000 (1800){}2,000 (1900){}3,000 (2000){}{}population: {COMMA}{}city flag: {COMMA}{}town class: {COMMA}
+STR_INDUSTRY_CITY_HALL_INFO_TEXT_PLANNED_TOWN		:{}{SILVER}Planned Town{BLACK}{}{}{TINYFONT}Population limit:{}1,000 (1800){}2,000 (1900){}3,000 (2000){}{}population: {COMMA}{}city flag: {COMMA}{}town class: {COMMA}
+STR_INDUSTRY_CITY_HALL_INFO_TEXT_VILLAGE			:{}{SILVER}Village{BLACK}{}{}{TINYFONT}Population limit:{}500 / 100* (1800){}1,000 / 400* (1900){}1,500 / 700* (2000){}{}*snow/desert{}{}population: {COMMA}{}city flag: {COMMA}{}town class: {COMMA}
+
+#Validation messages
+
+STR_INDUSTRY_TOO_CLOSE						:Too close to another similar industry, minimum distance is 50 tiles.
+STR_TOUR_INDUSTRY_TOO_CLOSE					:Too close to another tourist industry, minimum distance is 12 tiles.s
+STR_INDUSTRY_TOO_CLOSE_TO_TOWN				:Industry should be located away from the town center, minimum distance is 20 tiles.
+STR_ONE_INDUSTRY_PER_TOWN					:Only one industry of this type allowed per town.
+STR_WATER_CHECK_FAILED						:Must be more than 16 tiles from water.
+STR_TILE_IND_CHECK_FAILED					:Too close to another industry.
+STR_TILE_FLAT_CHECK_FAILED					:Can only build industry on flat land.
+STR_ERR_NO_DESERT_ONLY						:... cannot be built in desert areas
+
+#Parameters
+
+STR_PARAM_NAME_ENABLE_DISTCENTER			:Distribution Center
+STR_PARAM_DESC_ENABLE_DISTCENTER			:Accepts: food, goods, petrol, alcohol, chemicals, wood, building materials, FIRS supplies{}Produces: nothing
+
+STR_PARAM_NAME_ENABLE_LUMBER_MILL			:Lumber Mill
+STR_PARAM_DESC_ENABLE_LUMBER_MILL			:Copy of default lumber mill for tree growth control. Available in all climates. Enable if you need tree growth control or an industry to produce wood.
+
+STR_PARAM_NAME_ENABLE_DISTILLERY			:Distillery
+STR_PARAM_DESC_ENABLE_DISTILLERY			:Accepts: grain|wheat|maize, fruit{}Produces: alcohol
+
+STR_PARAM_NAME_ENABLE_PETROL_PLANT			:Hydrocracking Plant
+STR_PARAM_DESC_ENABLE_PETROL_PLANT			:Accepts: coal, oil, wood{}Produces: chemicals, petrol{}{}Dynamic output based on transported %
+
+STR_PARAM_NAME_ENABLE_CITY_HALL			    :City Hall
+STR_PARAM_DESC_ENABLE_CITY_HALL			    :Accepts & produces tourists (if present), otherwise passengers. Manual placement only.{}{}Displays town information for Pikka's TaI house set (version Gamma 1).
+
+STR_PARAM_NAME_MANUAL_PLACEMENT				:Manual placement
+STR_PARAM_DESC_MANUAL_PLACEMENT				:Off (default): industries are placed on map generation and can appear in game. On: industries must be manually placed.
+
+STR_PARAM_NAME_CLOSURE_PROTECTION_TIME		:Closure protection period
+STR_PARAM_DESC_CLOSURE_PROTECTION_TIME		:Industries will be protected from closure for this many months: default 60, max 600, min 0. A value of 0 will disable industry closure.
+
+#string strings
+STR_EMPTY_STRING						    :
+

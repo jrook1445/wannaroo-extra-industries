@@ -1,0 +1,36 @@
+/* common_spritelayouts.pnml */
+
+/*
+    License: GPL v2
+    https://github.com/jrook1445/wannaroo-extra-industries
+*/
+
+spritelayout jrconcrete_tile_spritelayout {
+	ground { sprite: GROUNDSPRITE_CONCRETE; }
+}
+
+item (FEAT_INDUSTRYTILES, jrconcrete_tile, 1) {
+	property {
+		substitute: 0;
+		special_flags: bitmask(INDTILE_FLAG_ACCEPT_ALL);
+	}
+	graphics {
+		jrconcrete_tile_spritelayout;
+	}
+}
+
+spritelayout jrshed_tile_spritelayout {
+	ground { sprite: GROUNDSPRITE_CONCRETE; }
+	building { sprite: (construction_state==0 ? 2061 : construction_state==3 ? 2063 : 2062); }
+}
+
+spritelayout jrwarehouse_tile_spritelayout {
+	ground { sprite: GROUNDSPRITE_CONCRETE; }
+	building { sprite: (construction_state==0 ? 2188 : construction_state==3 ? 2190 : 2189); recolour_mode: RECOLOUR_REMAP; palette: PALETTE_USE_DEFAULT; }
+}
+
+spritelayout jrredtank_tile_spritelayout {
+	ground { sprite: GROUNDSPRITE_CONCRETE; }
+	building { sprite: (construction_state==0 ? 2194 : construction_state==3 ? 2196 : 2195); recolour_mode: RECOLOUR_REMAP; palette: palette_1cc(COLOUR_RED); }
+}
+

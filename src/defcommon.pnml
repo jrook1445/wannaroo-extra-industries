@@ -1,0 +1,49 @@
+/* defcommon.pnml */
+
+/*
+    License: GPL v2
+    https://github.com/jrook1445/wannaroo-extra-industries
+*/
+
+// @TODO:
+// 1. test closure/initialization logic
+// 2. test dynamic output: hydrocrack
+
+#define IND_DIST_CENTER		0x00
+#define IND_LUMBER_MILL		0x01
+#define IND_DISTILLERY		0x02
+#define IND_PETROL_PLANT	0x03
+#define IND_CITY_HALL       0x04
+
+/* INDUSTRY TILE IDs
+
+   concrete		    1
+   DIST_CENTER		2-5
+   DISTILLERY		6-9
+   PETROL_PLANT		10-14
+   CITY_HALL        15-16
+
+*/
+
+/* When we receive cargo, the counter (0x00) is reset, industry is initialised (0x0F). */
+//produce(industry_blackhole_cargo_arrive_produce, waiting_cargo_1, waiting_cargo_2, waiting_cargo_3, 0, 0, [STORE_PERM(1, 0x0F), STORE_PERM(0, 0x00)]);
+
+/* Every month the counter is increased if the industry has been initialised. */
+switch (FEAT_INDUSTRIES, SELF, industry_monthly_prod_change_switch, STORE_PERM(LOAD_PERM(0x00) + LOAD_PERM(0x0F), 0x00)) {
+	return CB_RESULT_IND_PROD_NO_CHANGE;
+}
+
+/* Only check industry closure if the counter is greater than param_closure_protect_time and industry closure is enabled. */
+switch (FEAT_INDUSTRIES, SELF, industry_random_prod_change_switch, (param_closure_protect_time==0 ? 0 : LOAD_PERM(0x00))) {
+	0..param_closure_protect_time: return CB_RESULT_IND_PROD_NO_CHANGE;
+	return CB_RESULT_IND_PROD_CLOSE;
+}
+
+// remove cargo_subtype_display text from industry windows
+// text is put there because we have a produce block
+switch (FEAT_INDUSTRIES, SELF, industry_remove_cargo_text, getbits(extra_callback_info2, 0, 8)) {
+	0: return 0x3800 + string(STR_EMPTY_STRING);
+	1: return 0x3800 + string(STR_EMPTY_STRING);
+	2: return 0x3800 + string(STR_EMPTY_STRING);
+}
+

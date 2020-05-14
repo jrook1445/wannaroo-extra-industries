@@ -1,0 +1,105 @@
+/* distribution_center.pnml */
+
+/*
+    License: GPL v2
+    https://github.com/jrook1445/wannaroo-extra-industries
+*/
+
+tilelayout jrdistcenter_tilelayout1 {
+	//0, 0: jrconcrete_tile;
+	0, 0: jrdistcenter_tile_warehouse;
+	0, 1: jrdistcenter_tile_shed;
+	//0, 1: jrdistcenter_tile_warehouse;
+	1, 0: jrdistcenter_tile_warehouse;
+	1, 1: jrconcrete_tile;
+	1, 2: jrdistcenter_tile_shed;
+	2, 0: jrdistcenter_tile_warehouse;
+	2, 1: jrdistcenter_tile_goods;
+	//2, 2: jrconcrete_tile;
+	2, 2: jrdistcenter_tile_shed;
+}
+
+tilelayout jrdistcenter_tilelayout2 {
+	//0, 0: jrconcrete_tile;
+	0, 0: jrdistcenter_tile_warehouse;
+	0, 1: jrdistcenter_tile_warehouse;
+	0, 2: jrdistcenter_tile_warehouse;
+	1, 0: jrconcrete_tile;
+	1, 1: jrconcrete_tile;
+	1, 2: jrdistcenter_tile_goods;
+	2, 1: jrdistcenter_tile_shed;
+	2, 2: jrdistcenter_tile_shed;
+}
+
+tilelayout jrdistcenter_petr_tilelayout1 {
+	0, 0: jrdistcenter_tile_tank;
+	0, 1: jrdistcenter_tile_shed;
+	1, 0: jrdistcenter_tile_warehouse;
+	1, 1: jrconcrete_tile;
+	1, 2: jrdistcenter_tile_shed;
+	2, 0: jrdistcenter_tile_warehouse;
+	2, 1: jrdistcenter_tile_goods;
+	2, 2: jrdistcenter_tile_tank;
+}
+
+tilelayout jrdistcenter_petr_tilelayout2 {
+	0, 0: jrdistcenter_tile_tank;
+	0, 1: jrdistcenter_tile_warehouse;
+	0, 2: jrdistcenter_tile_warehouse;
+	1, 0: jrdistcenter_tile_tank;
+	1, 1: jrconcrete_tile;
+	1, 2: jrdistcenter_tile_goods;
+	2, 1: jrdistcenter_tile_shed;
+	2, 2: jrdistcenter_tile_shed;
+}
+
+/* When we receive cargo, the counter (0x00) is reset, industry is initialised (0x0F). */
+produce(industry_distcenter_cargo_arrive_produce, [], [], [STORE_PERM(1, 0x0F), STORE_PERM(0, 0x00), 0])
+
+INDUSTRY_LOCATION_SWITCHES(IND_DIST_CENTER)
+
+switch (FEAT_INDUSTRIES, SELF, dist_center_water_check, water_distance) {
+	0..16: return string(STR_WATER_CHECK_FAILED);
+	check_nearby_IND_DIST_CENTER_industry;
+}
+
+if (param_enable_distcenter) {
+
+	item (FEAT_INDUSTRIES, industry_distcenter, IND_DIST_CENTER) {
+		property {
+			substitute:		        INDUSTRYTYPE_POWER_PLANT;
+			conflicting_ind_types:	[];
+			layouts:		        [jrdistcenter_tilelayout1, jrdistcenter_tilelayout2];
+			life_type:		        IND_LIFE_TYPE_BLACK_HOLE;
+			// costs from FIRS 3 bulk terminal
+			fund_cost_multiplier:	152;
+			remove_cost_multiplier:	0;
+			cargo_types:            [accept_cargo("FOOD"), accept_cargo("GOOD"), accept_cargo("PETR"), accept_cargo("BEER"), accept_cargo("RFPR"), accept_cargo("WOOD"), accept_cargo("BDMT"), accept_cargo("ENSP"), accept_cargo("FMSP"), accept_cargo("MNSP")];
+			min_cargo_distr:	    5;
+			prob_map_gen:		    param_manual_placement ? 0 : 2;
+			prob_in_game:		    param_manual_placement ? 0 : 2;
+			prospect_chance:	    1.0;
+			map_colour:		        189; //168;
+			name:			        string(STR_DISTCENTER_NAME);
+			nearby_station_name:	string(STR_DISTCENTER_STATION_NAME);
+		}
+		graphics {
+			monthly_prod_change:    industry_monthly_prod_change_switch;
+            random_prod_change:     industry_random_prod_change_switch;
+			produce_cargo_arrival:	industry_distcenter_cargo_arrive_produce;
+			location_check:		    dist_center_water_check;
+			colour:			        (founder == 16) ? COLOUR_BROWN : founder_colour1;
+			cargo_subtype_display:	industry_remove_cargo_text;
+		}
+	}
+
+}
+
+if (cargotype_available("PETR")) {
+	item (FEAT_INDUSTRIES, industry_distcenter) {
+		property {
+			layouts:		        [jrdistcenter_petr_tilelayout1, jrdistcenter_petr_tilelayout2];
+		}
+	}
+}
+

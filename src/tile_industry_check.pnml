@@ -1,0 +1,1281 @@
+/* tile_industry_check.pnml */
+
+/*
+    License: GPL v2
+    https://github.com/jrook1445/wannaroo-extra-industries
+*/
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_255, nearby_tile_class(-8, -8)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_flat_check;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_254, nearby_tile_class(-8, -7)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_255;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_253, nearby_tile_class(-8, -6)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_254;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_252, nearby_tile_class(-8, -5)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_253;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_251, nearby_tile_class(-8, -4)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_252;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_250, nearby_tile_class(-8, -3)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_251;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_249, nearby_tile_class(-8, -2)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_250;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_248, nearby_tile_class(-8, -1)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_249;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_247, nearby_tile_class(-8, 0)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_248;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_246, nearby_tile_class(-8, 1)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_247;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_245, nearby_tile_class(-8, 2)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_246;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_244, nearby_tile_class(-8, 3)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_245;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_243, nearby_tile_class(-8, 4)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_244;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_242, nearby_tile_class(-8, 5)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_243;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_241, nearby_tile_class(-8, 6)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_242;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_240, nearby_tile_class(-8, 7)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_241;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_239, nearby_tile_class(-7, -8)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_240;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_238, nearby_tile_class(-7, -7)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_239;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_237, nearby_tile_class(-7, -6)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_238;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_236, nearby_tile_class(-7, -5)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_237;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_235, nearby_tile_class(-7, -4)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_236;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_234, nearby_tile_class(-7, -3)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_235;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_233, nearby_tile_class(-7, -2)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_234;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_232, nearby_tile_class(-7, -1)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_233;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_231, nearby_tile_class(-7, 0)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_232;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_230, nearby_tile_class(-7, 1)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_231;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_229, nearby_tile_class(-7, 2)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_230;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_228, nearby_tile_class(-7, 3)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_229;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_227, nearby_tile_class(-7, 4)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_228;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_226, nearby_tile_class(-7, 5)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_227;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_225, nearby_tile_class(-7, 6)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_226;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_224, nearby_tile_class(-7, 7)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_225;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_223, nearby_tile_class(-6, -8)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_224;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_222, nearby_tile_class(-6, -7)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_223;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_221, nearby_tile_class(-6, -6)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_222;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_220, nearby_tile_class(-6, -5)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_221;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_219, nearby_tile_class(-6, -4)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_220;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_218, nearby_tile_class(-6, -3)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_219;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_217, nearby_tile_class(-6, -2)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_218;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_216, nearby_tile_class(-6, -1)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_217;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_215, nearby_tile_class(-6, 0)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_216;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_214, nearby_tile_class(-6, 1)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_215;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_213, nearby_tile_class(-6, 2)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_214;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_212, nearby_tile_class(-6, 3)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_213;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_211, nearby_tile_class(-6, 4)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_212;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_210, nearby_tile_class(-6, 5)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_211;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_209, nearby_tile_class(-6, 6)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_210;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_208, nearby_tile_class(-6, 7)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_209;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_207, nearby_tile_class(-5, -8)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_208;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_206, nearby_tile_class(-5, -7)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_207;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_205, nearby_tile_class(-5, -6)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_206;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_204, nearby_tile_class(-5, -5)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_205;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_203, nearby_tile_class(-5, -4)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_204;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_202, nearby_tile_class(-5, -3)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_203;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_201, nearby_tile_class(-5, -2)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_202;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_200, nearby_tile_class(-5, -1)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_201;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_199, nearby_tile_class(-5, 0)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_200;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_198, nearby_tile_class(-5, 1)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_199;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_197, nearby_tile_class(-5, 2)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_198;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_196, nearby_tile_class(-5, 3)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_197;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_195, nearby_tile_class(-5, 4)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_196;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_194, nearby_tile_class(-5, 5)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_195;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_193, nearby_tile_class(-5, 6)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_194;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_192, nearby_tile_class(-5, 7)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_193;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_191, nearby_tile_class(-4, -8)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_192;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_190, nearby_tile_class(-4, -7)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_191;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_189, nearby_tile_class(-4, -6)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_190;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_188, nearby_tile_class(-4, -5)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_189;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_187, nearby_tile_class(-4, -4)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_188;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_186, nearby_tile_class(-4, -3)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_187;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_185, nearby_tile_class(-4, -2)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_186;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_184, nearby_tile_class(-4, -1)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_185;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_183, nearby_tile_class(-4, 0)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_184;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_182, nearby_tile_class(-4, 1)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_183;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_181, nearby_tile_class(-4, 2)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_182;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_180, nearby_tile_class(-4, 3)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_181;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_179, nearby_tile_class(-4, 4)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_180;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_178, nearby_tile_class(-4, 5)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_179;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_177, nearby_tile_class(-4, 6)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_178;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_176, nearby_tile_class(-4, 7)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_177;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_175, nearby_tile_class(-3, -8)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_176;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_174, nearby_tile_class(-3, -7)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_175;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_173, nearby_tile_class(-3, -6)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_174;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_172, nearby_tile_class(-3, -5)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_173;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_171, nearby_tile_class(-3, -4)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_172;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_170, nearby_tile_class(-3, -3)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_171;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_169, nearby_tile_class(-3, -2)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_170;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_168, nearby_tile_class(-3, -1)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_169;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_167, nearby_tile_class(-3, 0)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_168;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_166, nearby_tile_class(-3, 1)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_167;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_165, nearby_tile_class(-3, 2)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_166;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_164, nearby_tile_class(-3, 3)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_165;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_163, nearby_tile_class(-3, 4)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_164;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_162, nearby_tile_class(-3, 5)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_163;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_161, nearby_tile_class(-3, 6)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_162;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_160, nearby_tile_class(-3, 7)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_161;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_159, nearby_tile_class(-2, -8)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_160;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_158, nearby_tile_class(-2, -7)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_159;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_157, nearby_tile_class(-2, -6)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_158;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_156, nearby_tile_class(-2, -5)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_157;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_155, nearby_tile_class(-2, -4)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_156;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_154, nearby_tile_class(-2, -3)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_155;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_153, nearby_tile_class(-2, -2)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_154;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_152, nearby_tile_class(-2, -1)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_153;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_151, nearby_tile_class(-2, 0)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_152;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_150, nearby_tile_class(-2, 1)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_151;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_149, nearby_tile_class(-2, 2)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_150;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_148, nearby_tile_class(-2, 3)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_149;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_147, nearby_tile_class(-2, 4)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_148;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_146, nearby_tile_class(-2, 5)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_147;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_145, nearby_tile_class(-2, 6)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_146;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_144, nearby_tile_class(-2, 7)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_145;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_143, nearby_tile_class(-1, -8)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_144;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_142, nearby_tile_class(-1, -7)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_143;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_141, nearby_tile_class(-1, -6)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_142;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_140, nearby_tile_class(-1, -5)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_141;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_139, nearby_tile_class(-1, -4)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_140;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_138, nearby_tile_class(-1, -3)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_139;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_137, nearby_tile_class(-1, -2)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_138;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_136, nearby_tile_class(-1, -1)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_137;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_135, nearby_tile_class(-1, 0)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_136;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_134, nearby_tile_class(-1, 1)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_135;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_133, nearby_tile_class(-1, 2)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_134;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_132, nearby_tile_class(-1, 3)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_133;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_131, nearby_tile_class(-1, 4)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_132;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_130, nearby_tile_class(-1, 5)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_131;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_129, nearby_tile_class(-1, 6)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_130;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_128, nearby_tile_class(-1, 7)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_129;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_127, nearby_tile_class(0, -8)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_128;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_126, nearby_tile_class(0, -7)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_127;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_125, nearby_tile_class(0, -6)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_126;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_124, nearby_tile_class(0, -5)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_125;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_123, nearby_tile_class(0, -4)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_124;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_122, nearby_tile_class(0, -3)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_123;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_121, nearby_tile_class(0, -2)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_122;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_120, nearby_tile_class(0, -1)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_121;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_119, nearby_tile_class(0, 1)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_120;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_118, nearby_tile_class(0, 2)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_119;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_117, nearby_tile_class(0, 3)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_118;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_116, nearby_tile_class(0, 4)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_117;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_115, nearby_tile_class(0, 5)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_116;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_114, nearby_tile_class(0, 6)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_115;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_113, nearby_tile_class(0, 7)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_114;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_112, nearby_tile_class(1, -8)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_113;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_111, nearby_tile_class(1, -7)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_112;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_110, nearby_tile_class(1, -6)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_111;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_109, nearby_tile_class(1, -5)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_110;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_108, nearby_tile_class(1, -4)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_109;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_107, nearby_tile_class(1, -3)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_108;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_106, nearby_tile_class(1, -2)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_107;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_105, nearby_tile_class(1, -1)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_106;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_104, nearby_tile_class(1, 0)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_105;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_103, nearby_tile_class(1, 1)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_104;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_102, nearby_tile_class(1, 2)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_103;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_101, nearby_tile_class(1, 3)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_102;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_100, nearby_tile_class(1, 4)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_101;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_99, nearby_tile_class(1, 5)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_100;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_98, nearby_tile_class(1, 6)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_99;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_97, nearby_tile_class(1, 7)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_98;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_96, nearby_tile_class(2, -8)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_97;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_95, nearby_tile_class(2, -7)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_96;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_94, nearby_tile_class(2, -6)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_95;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_93, nearby_tile_class(2, -5)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_94;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_92, nearby_tile_class(2, -4)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_93;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_91, nearby_tile_class(2, -3)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_92;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_90, nearby_tile_class(2, -2)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_91;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_89, nearby_tile_class(2, -1)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_90;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_88, nearby_tile_class(2, 0)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_89;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_87, nearby_tile_class(2, 1)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_88;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_86, nearby_tile_class(2, 2)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_87;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_85, nearby_tile_class(2, 3)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_86;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_84, nearby_tile_class(2, 4)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_85;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_83, nearby_tile_class(2, 5)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_84;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_82, nearby_tile_class(2, 6)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_83;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_81, nearby_tile_class(2, 7)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_82;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_80, nearby_tile_class(3, -8)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_81;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_79, nearby_tile_class(3, -7)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_80;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_78, nearby_tile_class(3, -6)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_79;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_77, nearby_tile_class(3, -5)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_78;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_76, nearby_tile_class(3, -4)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_77;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_75, nearby_tile_class(3, -3)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_76;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_74, nearby_tile_class(3, -2)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_75;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_73, nearby_tile_class(3, -1)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_74;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_72, nearby_tile_class(3, 0)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_73;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_71, nearby_tile_class(3, 1)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_72;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_70, nearby_tile_class(3, 2)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_71;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_69, nearby_tile_class(3, 3)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_70;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_68, nearby_tile_class(3, 4)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_69;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_67, nearby_tile_class(3, 5)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_68;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_66, nearby_tile_class(3, 6)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_67;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_65, nearby_tile_class(3, 7)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_66;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_64, nearby_tile_class(4, -8)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_65;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_63, nearby_tile_class(4, -7)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_64;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_62, nearby_tile_class(4, -6)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_63;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_61, nearby_tile_class(4, -5)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_62;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_60, nearby_tile_class(4, -4)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_61;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_59, nearby_tile_class(4, -3)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_60;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_58, nearby_tile_class(4, -2)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_59;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_57, nearby_tile_class(4, -1)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_58;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_56, nearby_tile_class(4, 0)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_57;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_55, nearby_tile_class(4, 1)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_56;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_54, nearby_tile_class(4, 2)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_55;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_53, nearby_tile_class(4, 3)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_54;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_52, nearby_tile_class(4, 4)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_53;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_51, nearby_tile_class(4, 5)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_52;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_50, nearby_tile_class(4, 6)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_51;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_49, nearby_tile_class(4, 7)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_50;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_48, nearby_tile_class(5, -8)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_49;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_47, nearby_tile_class(5, -7)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_48;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_46, nearby_tile_class(5, -6)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_47;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_45, nearby_tile_class(5, -5)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_46;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_44, nearby_tile_class(5, -4)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_45;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_43, nearby_tile_class(5, -3)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_44;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_42, nearby_tile_class(5, -2)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_43;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_41, nearby_tile_class(5, -1)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_42;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_40, nearby_tile_class(5, 0)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_41;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_39, nearby_tile_class(5, 1)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_40;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_38, nearby_tile_class(5, 2)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_39;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_37, nearby_tile_class(5, 3)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_38;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_36, nearby_tile_class(5, 4)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_37;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_35, nearby_tile_class(5, 5)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_36;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_34, nearby_tile_class(5, 6)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_35;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_33, nearby_tile_class(5, 7)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_34;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_32, nearby_tile_class(6, -8)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_33;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_31, nearby_tile_class(6, -7)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_32;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_30, nearby_tile_class(6, -6)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_31;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_29, nearby_tile_class(6, -5)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_30;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_28, nearby_tile_class(6, -4)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_29;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_27, nearby_tile_class(6, -3)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_28;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_26, nearby_tile_class(6, -2)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_27;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_25, nearby_tile_class(6, -1)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_26;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_24, nearby_tile_class(6, 0)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_25;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_23, nearby_tile_class(6, 1)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_24;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_22, nearby_tile_class(6, 2)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_23;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_21, nearby_tile_class(6, 3)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_22;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_20, nearby_tile_class(6, 4)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_21;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_19, nearby_tile_class(6, 5)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_20;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_18, nearby_tile_class(6, 6)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_19;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_17, nearby_tile_class(6, 7)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_18;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_16, nearby_tile_class(7, -8)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_17;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_15, nearby_tile_class(7, -7)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_16;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_14, nearby_tile_class(7, -6)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_15;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_13, nearby_tile_class(7, -5)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_14;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_12, nearby_tile_class(7, -4)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_13;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_11, nearby_tile_class(7, -3)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_12;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_10, nearby_tile_class(7, -2)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_11;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_9, nearby_tile_class(7, -1)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_10;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_8, nearby_tile_class(7, 0)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_9;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_7, nearby_tile_class(7, 1)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_8;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_6, nearby_tile_class(7, 2)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_7;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_5, nearby_tile_class(7, 3)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_6;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_4, nearby_tile_class(7, 4)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_5;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_3, nearby_tile_class(7, 5)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_4;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_2, nearby_tile_class(7, 6)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_3;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_industry_check_1, nearby_tile_class(7, 7)) {
+	TILE_CLASS_INDUSTRY: return string(STR_TILE_IND_CHECK_FAILED);
+	tile_industry_check_2;
+}

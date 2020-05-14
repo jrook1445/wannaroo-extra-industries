@@ -1,0 +1,299 @@
+/* location_checks.pnml */
+
+/*
+    License: GPL v2
+    https://github.com/jrook1445/wannaroo-extra-industries
+*/
+
+// @TODO: City Hall location checks: Superstore (for TOUR), Town Square, Hotel, Visitor Center
+
+// max number of industries of a given type is proportional to map size, 256x256 = 3 (maps < 256x256 will have max 2 each type)
+// affects distcenter, distillery, petrol plant
+max_industries = max((map_size / (256 * 256)) * 3, 2);
+
+#define IND_SHOP    		0x25, str2number("jdr\83")
+#define IND_SUPERSTORE		0x26, str2number("jdr\83")
+#define IND_HOTEL		    0x00, str2number("jdr\02")
+#define IND_TOWER		    0x01, str2number("jdr\02")
+#define IND_TOWN_SQUARE		0x02, str2number("jdr\02")
+
+// called in tile_industry_check
+// the final tile check, only a negative result returned, no onward chain
+// further checks are done by the industry
+switch (FEAT_INDUSTRYTILES, SELF, tile_flat_check, nearby_tile_slope(0, 0)) {
+	SLOPE_FLAT: return CB_RESULT_LOCATION_ALLOW;
+	1..255: return string(STR_TILE_FLAT_CHECK_FAILED);
+}
+
+switch (FEAT_INDUSTRIES, SELF, town_distance_check_20, town_euclidean_dist(0, 0)) {
+	0..399: return string(STR_INDUSTRY_TOO_CLOSE_TO_TOWN);
+	return CB_RESULT_LOCATION_ALLOW;
+}
+
+// City Hall location checks
+/*
+switch (FEAT_INDUSTRIES, SELF, cityhall_check_location, (cargotype_available("TOUR") ? industry_distance(IND_SUPERSTORE) : 13)) {
+        0..12: return CB_RESULT_LOCATION_DISALLOW;
+        return CB_RESULT_LOCATION_ALLOW;
+}
+*/
+
+// Distribution Center location checks
+// not checking Lumber Mill (either default one or this newgrf one) for Wood: TMWFTLB
+switch (FEAT_INDUSTRIES, SELF, distcenter_min_distance_foodprocplant, industry_distance(INDUSTRYTYPE_FOOD_PROCESSING_PLANT, 0)) {
+        0..16: return CB_RESULT_LOCATION_DISALLOW;
+        town_distance_check_20;
+}
+
+switch (FEAT_INDUSTRIES, SELF, distcenter_min_distance_distillery, industry_distance(IND_DISTILLERY)) {
+        0..16: return CB_RESULT_LOCATION_DISALLOW;
+        distcenter_min_distance_foodprocplant;
+}
+
+switch (FEAT_INDUSTRIES, SELF, distcenter_min_distance_hydrocrack, industry_distance(IND_PETROL_PLANT)) {
+        0..16: return CB_RESULT_LOCATION_DISALLOW;
+        distcenter_min_distance_distillery;
+}
+
+switch (FEAT_INDUSTRIES, SELF, distcenter_min_distance_factory_tropic, industry_distance(INDUSTRYTYPE_TROPICAL_FACTORY, 0)) {
+        0..16: return CB_RESULT_LOCATION_DISALLOW;
+        distcenter_min_distance_hydrocrack;
+}
+
+switch (FEAT_INDUSTRIES, SELF, distcenter_min_distance_factory_arctic, industry_distance(INDUSTRYTYPE_PRINTING_WORKS, 0)) {
+        0..16: return CB_RESULT_LOCATION_DISALLOW;
+        distcenter_min_distance_factory_tropic;
+}
+
+switch (FEAT_INDUSTRIES, SELF, distcenter_min_distance_factory_temp, industry_distance(INDUSTRYTYPE_TEMPERATE_FACTORY, 0)) {
+        0..16: return CB_RESULT_LOCATION_DISALLOW;
+        distcenter_min_distance_factory_arctic;
+}
+
+switch (FEAT_INDUSTRIES, SELF, distcenter_min_distance_oil_refinery, industry_distance(INDUSTRYTYPE_OIL_REFINERY, 0)) {
+        0..16: return CB_RESULT_LOCATION_DISALLOW;
+        distcenter_min_distance_factory_temp;
+}
+
+switch (FEAT_INDUSTRIES, SELF, distcenter_min_distance_forest, industry_distance(INDUSTRYTYPE_FOREST, 0)) {
+        0..16: return CB_RESULT_LOCATION_DISALLOW;
+        distcenter_min_distance_oil_refinery;
+}
+
+switch (FEAT_INDUSTRIES, SELF, distcenter_min_distance_distcenter, industry_distance(IND_DIST_CENTER)) {
+        0..49: return CB_RESULT_LOCATION_DISALLOW;
+        distcenter_min_distance_forest;
+}
+
+switch (FEAT_INDUSTRIES, SELF, distcenter_count, industry_count(IND_DIST_CENTER) < max_industries) {
+	0: return CB_RESULT_LOCATION_DISALLOW;
+	1: distcenter_min_distance_distcenter;
+}
+
+switch (FEAT_INDUSTRIES, SELF, distcenter_check_location, ((extra_callback_info2 == IND_CREATION_FUND) || (extra_callback_info2 == IND_CREATION_PROSPECT))) {
+        1: return CB_RESULT_LOCATION_ALLOW;
+        distcenter_count;
+}
+
+// Lumber Mill location checks
+switch (FEAT_INDUSTRIES, SELF, lumber_mill_no_desert, nearby_tile_terrain_type(0, 0)) {
+	TILETYPE_DESERT: return string(STR_ERR_NO_DESERT_ONLY);
+	return CB_RESULT_LOCATION_ALLOW;
+}
+
+switch (FEAT_INDUSTRIES, SELF, lumber_mill_min_distance_dist_center, industry_distance(IND_DIST_CENTER)) {
+        0..16: return CB_RESULT_LOCATION_DISALLOW;
+        lumber_mill_no_desert;
+}
+
+switch (FEAT_INDUSTRIES, SELF, lumber_mill_min_distance_hydrocrack, industry_distance(IND_PETROL_PLANT)) {
+        0..16: return CB_RESULT_LOCATION_DISALLOW;
+        lumber_mill_min_distance_dist_center;
+}
+
+switch (FEAT_INDUSTRIES, SELF, lumber_mill_min_distance_factory_tropic, industry_distance(INDUSTRYTYPE_TROPICAL_FACTORY, 0)) {
+        0..16: return CB_RESULT_LOCATION_DISALLOW;
+        lumber_mill_min_distance_hydrocrack;
+}
+
+switch (FEAT_INDUSTRIES, SELF, lumber_mill_min_distance_paper_mill, industry_distance(INDUSTRYTYPE_PAPER_MILL, 0)) {
+        0..16: return CB_RESULT_LOCATION_DISALLOW;
+        lumber_mill_min_distance_factory_tropic;
+}
+
+switch (FEAT_INDUSTRIES, SELF, lumber_mill_min_distance_oil_refinery, industry_distance(INDUSTRYTYPE_OIL_REFINERY, 0)) {
+        0..16: return CB_RESULT_LOCATION_DISALLOW;
+        lumber_mill_min_distance_paper_mill;
+}
+
+switch (FEAT_INDUSTRIES, SELF, lumber_mill_min_distance_sawmill, industry_distance(INDUSTRYTYPE_SAWMILL, 0)) {
+        0..16: return CB_RESULT_LOCATION_DISALLOW;
+        lumber_mill_min_distance_oil_refinery;
+}
+
+switch (FEAT_INDUSTRIES, SELF, lumber_mill_min_distance_power_plant, industry_distance(INDUSTRYTYPE_POWER_PLANT, 0)) {
+        0..16: return CB_RESULT_LOCATION_DISALLOW;
+        lumber_mill_min_distance_sawmill;
+}
+
+switch (FEAT_INDUSTRIES, SELF, lumber_mill_min_distance_lumber_mill, industry_distance(INDUSTRYTYPE_LUMBER_MILL, 0)) {
+        0..20: return CB_RESULT_LOCATION_DISALLOW;
+        lumber_mill_min_distance_power_plant;
+}
+
+switch (FEAT_INDUSTRIES, SELF, lumber_mill_check_location, ((extra_callback_info2 == IND_CREATION_FUND) || (extra_callback_info2 == IND_CREATION_PROSPECT))) {
+        1: lumber_mill_no_desert;
+        lumber_mill_min_distance_lumber_mill;
+}
+
+// Distillery location checks
+switch (FEAT_INDUSTRIES, SELF, distillery_min_distance_hotel, industry_distance(IND_HOTEL)) {
+        0..16: return CB_RESULT_LOCATION_DISALLOW;
+        town_distance_check_20;
+}
+
+switch (FEAT_INDUSTRIES, SELF, distillery_min_distance_distcenter, industry_distance(IND_DIST_CENTER)) {
+        0..16: return CB_RESULT_LOCATION_DISALLOW;
+        distillery_min_distance_hotel;
+}
+
+switch (FEAT_INDUSTRIES, SELF, distillery_min_distance_superstore, industry_distance(IND_SUPERSTORE)) {
+        0..16: return CB_RESULT_LOCATION_DISALLOW;
+        distillery_min_distance_distcenter;
+}
+
+switch (FEAT_INDUSTRIES, SELF, distillery_min_distance_shop, industry_distance(IND_SHOP)) {
+        0..16: return CB_RESULT_LOCATION_DISALLOW;
+        distillery_min_distance_superstore;
+}
+
+switch (FEAT_INDUSTRIES, SELF, distillery_min_distance_farm_fruit, industry_distance(INDUSTRYTYPE_FRUIT_PLANTATION, 0)) {
+        0..16: return CB_RESULT_LOCATION_DISALLOW;
+        distillery_min_distance_shop;
+}
+
+switch (FEAT_INDUSTRIES, SELF, distillery_min_distance_farm_tropic, industry_distance(INDUSTRYTYPE_TROPICAL_FARM, 0)) {
+        0..16: return CB_RESULT_LOCATION_DISALLOW;
+        distillery_min_distance_farm_fruit;
+}
+
+switch (FEAT_INDUSTRIES, SELF, distillery_min_distance_farm_temp_arctic, industry_distance(INDUSTRYTYPE_TEMPERATE_ARCTIC_FARM, 0)) {
+        0..16: return CB_RESULT_LOCATION_DISALLOW;
+        distillery_min_distance_farm_tropic;
+}
+
+switch (FEAT_INDUSTRIES, SELF, distillery_min_distance_distillery, industry_distance(IND_DISTILLERY)) {
+        0..49: return CB_RESULT_LOCATION_DISALLOW;
+        distillery_min_distance_farm_temp_arctic;
+}
+
+switch (FEAT_INDUSTRIES, SELF, distillery_count, industry_count(IND_DISTILLERY) < max_industries) {
+	0: return CB_RESULT_LOCATION_DISALLOW;
+	1: distillery_min_distance_distillery;
+}
+
+switch (FEAT_INDUSTRIES, SELF, distillery_check_location, ((extra_callback_info2 == IND_CREATION_FUND) || (extra_callback_info2 == IND_CREATION_PROSPECT))) {
+        1: return CB_RESULT_LOCATION_ALLOW;
+        distillery_count;
+}
+
+// Hydrocracking Plant location checks
+// not checking Lumber Mill (either default one or this newgrf one) for Wood: TMWFTLB
+switch (FEAT_INDUSTRIES, SELF, petrol_plant_min_distance_foodprocplant, industry_distance(INDUSTRYTYPE_FOOD_PROCESSING_PLANT, 0)) {
+        0..16: return CB_RESULT_LOCATION_DISALLOW;
+        town_distance_check_20;
+}
+
+switch (FEAT_INDUSTRIES, SELF, petrol_plant_min_distance_superstore, industry_distance(IND_SUPERSTORE)) {
+        0..16: return CB_RESULT_LOCATION_DISALLOW;
+        petrol_plant_min_distance_foodprocplant;
+}
+
+switch (FEAT_INDUSTRIES, SELF, petrol_plant_min_distance_shop, industry_distance(IND_SHOP)) {
+        0..16: return CB_RESULT_LOCATION_DISALLOW;
+        petrol_plant_min_distance_superstore;
+}
+
+switch (FEAT_INDUSTRIES, SELF, petrol_plant_min_distance_distcenter, industry_distance(IND_DIST_CENTER)) {
+        0..16: return CB_RESULT_LOCATION_DISALLOW;
+        petrol_plant_min_distance_shop;
+}
+
+switch (FEAT_INDUSTRIES, SELF, petrol_plant_min_distance_paper_mill, industry_distance(INDUSTRYTYPE_PAPER_MILL, 0)) {
+        0..16: return CB_RESULT_LOCATION_DISALLOW;
+        petrol_plant_min_distance_distcenter;
+}
+
+switch (FEAT_INDUSTRIES, SELF, petrol_plant_min_distance_factory_tropic, industry_distance(INDUSTRYTYPE_TROPICAL_FACTORY, 0)) {
+        0..16: return CB_RESULT_LOCATION_DISALLOW;
+        petrol_plant_min_distance_paper_mill;
+}
+
+switch (FEAT_INDUSTRIES, SELF, petrol_plant_min_distance_factory_arctic, industry_distance(INDUSTRYTYPE_PRINTING_WORKS, 0)) {
+        0..16: return CB_RESULT_LOCATION_DISALLOW;
+        petrol_plant_min_distance_factory_tropic;
+}
+
+switch (FEAT_INDUSTRIES, SELF, petrol_plant_min_distance_factory_temp, industry_distance(INDUSTRYTYPE_TEMPERATE_FACTORY, 0)) {
+        0..16: return CB_RESULT_LOCATION_DISALLOW;
+        petrol_plant_min_distance_factory_arctic;
+}
+
+switch (FEAT_INDUSTRIES, SELF, petrol_plant_min_distance_power_plant, industry_distance(INDUSTRYTYPE_POWER_PLANT, 0)) {
+        0..16: return CB_RESULT_LOCATION_DISALLOW;
+        petrol_plant_min_distance_factory_temp;
+}
+
+switch (FEAT_INDUSTRIES, SELF, petrol_plant_min_distance_forest, industry_distance(INDUSTRYTYPE_FOREST, 0)) {
+        0..16: return CB_RESULT_LOCATION_DISALLOW;
+        petrol_plant_min_distance_power_plant;
+}
+
+switch (FEAT_INDUSTRIES, SELF, petrol_plant_min_distance_oil_wells, industry_distance(INDUSTRYTYPE_OIL_WELLS, 0)) {
+        0..16: return CB_RESULT_LOCATION_DISALLOW;
+        petrol_plant_min_distance_forest;
+}
+
+switch (FEAT_INDUSTRIES, SELF, petrol_plant_min_distance_oil_rig, industry_distance(INDUSTRYTYPE_OIL_RIG, 0)) {
+        0..16: return CB_RESULT_LOCATION_DISALLOW;
+        petrol_plant_min_distance_oil_wells;
+}
+
+switch (FEAT_INDUSTRIES, SELF, petrol_plant_min_distance_coal_mine, industry_distance(INDUSTRYTYPE_COAL_MINE, 0)) {
+        0..16: return CB_RESULT_LOCATION_DISALLOW;
+        petrol_plant_min_distance_oil_rig;
+}
+
+switch (FEAT_INDUSTRIES, SELF, petrol_plant_min_distance_petrol_plant, industry_distance(IND_PETROL_PLANT)) {
+        0..49: return CB_RESULT_LOCATION_DISALLOW;
+        petrol_plant_min_distance_coal_mine;
+}
+
+switch (FEAT_INDUSTRIES, SELF, petrol_plant_count, industry_count(IND_PETROL_PLANT) < max_industries) {
+	0: return CB_RESULT_LOCATION_DISALLOW;
+	1: petrol_plant_min_distance_petrol_plant;
+}
+
+switch (FEAT_INDUSTRIES, SELF, petrol_plant_check_location, ((extra_callback_info2 == IND_CREATION_FUND) || (extra_callback_info2 == IND_CREATION_PROSPECT))) {
+        1: return CB_RESULT_LOCATION_ALLOW;
+        petrol_plant_count;
+}
+
+switch (FEAT_INDUSTRIES, SELF, decide_check_location_switch, LOAD_TEMP(1)) {
+	IND_PETROL_PLANT: petrol_plant_check_location;
+	IND_DISTILLERY: distillery_check_location;
+	IND_DIST_CENTER: distcenter_check_location;
+}
+
+#define INDUSTRY_LOCATION_SWITCHES(industry_id) \
+switch (FEAT_INDUSTRIES, SELF, industry_##industry_id##_monopoly_check, [STORE_TEMP(industry_id, 1), industry_town_count(industry_id)]) { \
+	0: decide_check_location_switch; \
+	return string(STR_ONE_INDUSTRY_PER_TOWN); \
+} \
+\
+switch (FEAT_INDUSTRIES, SELF, check_nearby_##industry_id##_industry, industry_distance(industry_id)) { \
+	0..49: return string(STR_INDUSTRY_TOO_CLOSE); \
+	industry_##industry_id##_monopoly_check; \
+} \
+\
+

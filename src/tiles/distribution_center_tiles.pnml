@@ -1,0 +1,72 @@
+/* distribution_center_tiles.pnml */
+
+/*
+    License: GPL v2
+    https://github.com/jrook1445/wannaroo-extra-industries
+*/
+
+spritelayout jrdistcenter_tile_goods_spritelayout {
+	ground { sprite: GROUNDSPRITE_CONCRETE; }
+
+	// goods cargo icons
+	/*
+	building { sprite: 4302; xoffset: 1; yoffset: 2; }
+	building { sprite: 4302; xoffset: 5; yoffset: 2; }
+	building { sprite: 4302; xoffset: 9; yoffset: 2; }
+	building { sprite: 4302; xoffset: 1; yoffset: 2; zoffset: 4; }
+	building { sprite: 4302; xoffset: 5; yoffset: 2; zoffset: 4; }
+	building { sprite: 4302; xoffset: 9 ; yoffset: 2; zoffset: 4; }
+
+	building { sprite: 4302; xoffset: 1; yoffset: 6; }
+	building { sprite: 4302; xoffset: 5; yoffset: 6; }
+	building { sprite: 4302; xoffset: 9; yoffset: 6; }
+	building { sprite: 4302; xoffset: 1; yoffset: 6; zoffset: 4; }
+	building { sprite: 4302; xoffset: 5; yoffset: 6; zoffset: 4; }
+	building { sprite: 4302; xoffset: 9; yoffset: 6; zoffset: 4; }
+	*/
+}
+
+item (FEAT_INDUSTRYTILES, jrdistcenter_tile_warehouse, 2) {
+	property {
+		substitute: 0;
+		special_flags: bitmask(INDTILE_FLAG_ACCEPT_ALL);
+	}
+	graphics {
+		tile_check: tile_industry_check_1;
+		jrwarehouse_tile_spritelayout;
+	}
+}
+
+item (FEAT_INDUSTRYTILES, jrdistcenter_tile_goods, 3) {
+	property {
+		substitute: 0;
+		special_flags: bitmask(INDTILE_FLAG_ACCEPT_ALL);
+	}
+	graphics {
+		tile_check: tile_industry_check_1;
+		jrdistcenter_tile_goods_spritelayout;
+	}
+}
+
+item (FEAT_INDUSTRYTILES, jrdistcenter_tile_shed, 4) {
+	property {
+		substitute: 0;
+		special_flags: bitmask(INDTILE_FLAG_ACCEPT_ALL);
+	}
+	graphics {
+		tile_check: tile_industry_check_1;
+		jrshed_tile_spritelayout;
+	}
+}
+
+item (FEAT_INDUSTRYTILES, jrdistcenter_tile_tank, 5) {
+	property {
+		substitute: 0;
+		special_flags: bitmask(INDTILE_FLAG_ACCEPT_ALL);
+	}
+	graphics {
+		tile_check: tile_industry_check_1;
+		jrredtank_tile_spritelayout;
+	}
+}
+
