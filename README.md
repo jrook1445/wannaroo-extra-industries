@@ -55,6 +55,6 @@ NewGRF for OpenTTD - Extra industries for WRBI, can also be used with other indu
 
     NML and NFO: with many thanks to all the developers/contributors of NML, NFO, and the documentation/newgrf spec website at https://newgrf-specs.tt-wiki.net/wiki/Main_Page
 
-    Inspiration: FIRS 3 Hotel, WhiteHand's tourist set, ECS Houses, Swedish Houses
+    Inspiration: ECS industry extension, PBI, FIRS
 
 :peace_symbol:
