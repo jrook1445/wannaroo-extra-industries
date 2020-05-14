@@ -1,7 +1,7 @@
 ##grflangid 0x00
 ##plural 0
 STR_GRF_NAME                                :Wannaroo Extra Industries (WRExInd)
-STR_GRF_DESCRIPTION                         :{}Wannaroo Extra Industries is ...{}{}License: GPL v2
+STR_GRF_DESCRIPTION                         :{}Wannaroo Extra Industries are some industries I've written for experimentation/testing/fun, but may be useful in your games.{}{}The set includes: Distribution Center, Lumber Mill, Distillery, Hydrocracking Plant, City Hall.{}{}See readme for more info.{}{}License: GPL v2
 STR_GRF_URL                                 :https://github.com/jrook1445/wannaroo-extra-industries
 
 #Error strings

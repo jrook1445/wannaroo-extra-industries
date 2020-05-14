@@ -21,8 +21,8 @@ grf {
 	grfid: "jdr\04";
 	name: string(STR_GRF_NAME);
 	desc: string(STR_GRF_DESCRIPTION);
-	version: 10;
-	min_compatible_version: 10;
+	version: 1000;
+	min_compatible_version: 1000;
 	url: string(STR_GRF_URL);
 
 	param {
