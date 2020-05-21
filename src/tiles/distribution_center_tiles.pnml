@@ -29,7 +29,8 @@ spritelayout jrdistcenter_tile_goods_spritelayout {
 item (FEAT_INDUSTRYTILES, jrdistcenter_tile_warehouse, 2) {
 	property {
 		substitute: 0;
-		special_flags: bitmask(INDTILE_FLAG_ACCEPT_ALL);
+		//special_flags: bitmask(INDTILE_FLAG_ACCEPT_ALL);
+		accepted_cargos: [[FOOD, 8], [GOOD, 8], [PETR, 8]];
 	}
 	graphics {
 		tile_check: tile_industry_check_1;
@@ -40,7 +41,8 @@ item (FEAT_INDUSTRYTILES, jrdistcenter_tile_warehouse, 2) {
 item (FEAT_INDUSTRYTILES, jrdistcenter_tile_goods, 3) {
 	property {
 		substitute: 0;
-		special_flags: bitmask(INDTILE_FLAG_ACCEPT_ALL);
+		//special_flags: bitmask(INDTILE_FLAG_ACCEPT_ALL);
+		accepted_cargos: [[FOOD, 8], [GOOD, 8], [PETR, 8]];
 	}
 	graphics {
 		tile_check: tile_industry_check_1;
@@ -51,7 +53,8 @@ item (FEAT_INDUSTRYTILES, jrdistcenter_tile_goods, 3) {
 item (FEAT_INDUSTRYTILES, jrdistcenter_tile_shed, 4) {
 	property {
 		substitute: 0;
-		special_flags: bitmask(INDTILE_FLAG_ACCEPT_ALL);
+		//special_flags: bitmask(INDTILE_FLAG_ACCEPT_ALL);
+		accepted_cargos: [[FOOD, 8], [GOOD, 8], [PETR, 8]];
 	}
 	graphics {
 		tile_check: tile_industry_check_1;
@@ -62,7 +65,8 @@ item (FEAT_INDUSTRYTILES, jrdistcenter_tile_shed, 4) {
 item (FEAT_INDUSTRYTILES, jrdistcenter_tile_tank, 5) {
 	property {
 		substitute: 0;
-		special_flags: bitmask(INDTILE_FLAG_ACCEPT_ALL);
+		//special_flags: bitmask(INDTILE_FLAG_ACCEPT_ALL);
+		accepted_cargos: [[FOOD, 8], [GOOD, 8], [PETR, 8]];
 	}
 	graphics {
 		tile_check: tile_industry_check_1;

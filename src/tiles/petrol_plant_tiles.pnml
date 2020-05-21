@@ -32,8 +32,10 @@ spritelayout jrpetrolplant_tile_widetank_spritelayout {
 item (FEAT_INDUSTRYTILES, jrpetrolplant_tile_distiller, 10) {
 	property {
 		substitute: 0;
-		special_flags: bitmask(INDTILE_FLAG_ACCEPT_ALL);
+		//special_flags: bitmask(INDTILE_FLAG_ACCEPT_ALL);
+		accepted_cargos: [[COAL, 8], [OIL_, 8], [WOOD, 8]];
 	}
+	if (cargotype_available("WSTE")) { property { accepted_cargos: [[WSTE, 8], [OIL_, 8], [WOOD, 8]]; } }
 	graphics {
 		tile_check: tile_industry_check_1;
 		jrpetrolplant_tile_distiller_spritelayout;
@@ -43,8 +45,10 @@ item (FEAT_INDUSTRYTILES, jrpetrolplant_tile_distiller, 10) {
 item (FEAT_INDUSTRYTILES, jrpetrolplant_tile_tallredtanks, 11) {
 	property {
 		substitute: 0;
-		special_flags: bitmask(INDTILE_FLAG_ACCEPT_ALL);
+		//special_flags: bitmask(INDTILE_FLAG_ACCEPT_ALL);
+		accepted_cargos: [[COAL, 8], [OIL_, 8], [WOOD, 8]];
 	}
+	if (cargotype_available("WSTE")) { property { accepted_cargos: [[WSTE, 8], [OIL_, 8], [WOOD, 8]]; } }
 	graphics {
 		tile_check: tile_industry_check_1;
 		jrpetrolplant_tile_tallredtanks_spritelayout;
@@ -54,8 +58,10 @@ item (FEAT_INDUSTRYTILES, jrpetrolplant_tile_tallredtanks, 11) {
 item (FEAT_INDUSTRYTILES, jrpetrolplant_tile_widetank, 12) {
 	property {
 		substitute: 0;
-		special_flags: bitmask(INDTILE_FLAG_ACCEPT_ALL);
+		//special_flags: bitmask(INDTILE_FLAG_ACCEPT_ALL);
+		accepted_cargos: [[COAL, 8], [OIL_, 8], [WOOD, 8]];
 	}
+	if (cargotype_available("WSTE")) { property { accepted_cargos: [[WSTE, 8], [OIL_, 8], [WOOD, 8]]; } }
 	graphics {
 		tile_check: tile_industry_check_1;
 		jrpetrolplant_tile_widetank_spritelayout;
@@ -65,8 +71,10 @@ item (FEAT_INDUSTRYTILES, jrpetrolplant_tile_widetank, 12) {
 item (FEAT_INDUSTRYTILES, jrpetrolplant_tile_shed, 13) {
 	property {
 		substitute: 0;
-		special_flags: bitmask(INDTILE_FLAG_ACCEPT_ALL);
+		//special_flags: bitmask(INDTILE_FLAG_ACCEPT_ALL);
+		accepted_cargos: [[COAL, 8], [OIL_, 8], [WOOD, 8]];
 	}
+	if (cargotype_available("WSTE")) { property { accepted_cargos: [[WSTE, 8], [OIL_, 8], [WOOD, 8]]; } }
 	graphics {
 		tile_check: tile_industry_check_1;
 		jrshed_tile_spritelayout;
@@ -76,8 +84,10 @@ item (FEAT_INDUSTRYTILES, jrpetrolplant_tile_shed, 13) {
 item (FEAT_INDUSTRYTILES, jrpetrolplant_tile_cracker, 14) {
 	property {
 		substitute: 0;
-		special_flags: bitmask(INDTILE_FLAG_ACCEPT_ALL);
+		//special_flags: bitmask(INDTILE_FLAG_ACCEPT_ALL);
+		accepted_cargos: [[COAL, 8], [OIL_, 8], [WOOD, 8]];
 	}
+	if (cargotype_available("WSTE")) { property { accepted_cargos: [[WSTE, 8], [OIL_, 8], [WOOD, 8]]; } }
 	graphics {
 		tile_check: tile_industry_check_1;
 		jrpetrolplant_tile_cracker_spritelayout;

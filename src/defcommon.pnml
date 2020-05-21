@@ -14,6 +14,9 @@
 #define IND_DISTILLERY		0x02
 #define IND_PETROL_PLANT	0x03
 #define IND_CITY_HALL       0x04
+#define IND_DESAL_PLANT     0x05
+#define IND_RCYC_DEPOT      0x06 // no closure checks
+#define IND_RCYC_PLANT      0x07 // no closure checks
 
 /* INDUSTRY TILE IDs
 
@@ -22,11 +25,14 @@
    DISTILLERY		6-9
    PETROL_PLANT		10-14
    CITY_HALL        15-16
+   DESAL_PLANT      17-23
+   RCYC_DEPOT       24-27
+   RCYC_PLANT       28-31
 
 */
 
 /* When we receive cargo, the counter (0x00) is reset, industry is initialised (0x0F). */
-//produce(industry_blackhole_cargo_arrive_produce, waiting_cargo_1, waiting_cargo_2, waiting_cargo_3, 0, 0, [STORE_PERM(1, 0x0F), STORE_PERM(0, 0x00)]);
+produce(industry_blackhole_cargo_arrive_produce, waiting_cargo_1, waiting_cargo_2, waiting_cargo_3, 0, 0, [STORE_PERM(1, 0x0F), STORE_PERM(0, 0x00), 0]);
 
 /* Every month the counter is increased if the industry has been initialised. */
 switch (FEAT_INDUSTRIES, SELF, industry_monthly_prod_change_switch, STORE_PERM(LOAD_PERM(0x00) + LOAD_PERM(0x0F), 0x00)) {
@@ -37,6 +43,21 @@ switch (FEAT_INDUSTRIES, SELF, industry_monthly_prod_change_switch, STORE_PERM(L
 switch (FEAT_INDUSTRIES, SELF, industry_random_prod_change_switch, (param_closure_protect_time==0 ? 0 : LOAD_PERM(0x00))) {
 	0..param_closure_protect_time: return CB_RESULT_IND_PROD_NO_CHANGE;
 	return CB_RESULT_IND_PROD_CLOSE;
+}
+
+// primary industries (desal plant)
+// check if any cargo was transported last month
+// if yes, initialise the industry (0x0F => 1), iff 0x0F == 0
+// if yes, reset the closure counter
+// if no, increase closure counter by 1
+// on a random production change, close after the closure protection period has passed without a cargo pickup
+switch (FEAT_INDUSTRIES, SELF, industry_primary_check_transported_2, [ STORE_TEMP( ((transported_last_month_1 > 0)||(transported_last_month_2 > 0)), 1), (LOAD_TEMP(1)==1 ? STORE_PERM(0, 0x00) : 0), 1]) {
+    industry_monthly_prod_change_switch;
+}
+
+switch (FEAT_INDUSTRIES, SELF, industry_primary_check_transported, [( LOAD_PERM(0x0F)==0 ? STORE_PERM( ((transported_last_month_1 > 0)||(transported_last_month_2 > 0)), 0x0F ) : 0 ), LOAD_PERM(0x0F)] ) {
+    0: return CB_RESULT_IND_PROD_NO_CHANGE; // industry not initialised, so no need to do a production change
+	1: industry_primary_check_transported_2;
 }
 
 // remove cargo_subtype_display text from industry windows

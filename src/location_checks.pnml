@@ -5,7 +5,7 @@
     https://github.com/jrook1445/wannaroo-extra-industries
 */
 
-// @TODO: City Hall location checks: Superstore (for TOUR), Town Square, Hotel, Visitor Center
+// @TODO:
 
 // max number of industries of a given type is proportional to map size, 256x256 = 3 (maps < 256x256 will have max 2 each type)
 // affects distcenter, distillery, petrol plant
@@ -30,13 +30,7 @@ switch (FEAT_INDUSTRIES, SELF, town_distance_check_20, town_euclidean_dist(0, 0)
 	return CB_RESULT_LOCATION_ALLOW;
 }
 
-// City Hall location checks
-/*
-switch (FEAT_INDUSTRIES, SELF, cityhall_check_location, (cargotype_available("TOUR") ? industry_distance(IND_SUPERSTORE) : 13)) {
-        0..12: return CB_RESULT_LOCATION_DISALLOW;
-        return CB_RESULT_LOCATION_ALLOW;
-}
-*/
+// City Hall location checks contained in city_hall.pnml
 
 // Distribution Center location checks
 // not checking Lumber Mill (either default one or this newgrf one) for Wood: TMWFTLB
@@ -75,14 +69,16 @@ switch (FEAT_INDUSTRIES, SELF, distcenter_min_distance_oil_refinery, industry_di
         distcenter_min_distance_factory_temp;
 }
 
+/*
 switch (FEAT_INDUSTRIES, SELF, distcenter_min_distance_forest, industry_distance(INDUSTRYTYPE_FOREST, 0)) {
         0..16: return CB_RESULT_LOCATION_DISALLOW;
         distcenter_min_distance_oil_refinery;
 }
+*/
 
 switch (FEAT_INDUSTRIES, SELF, distcenter_min_distance_distcenter, industry_distance(IND_DIST_CENTER)) {
         0..49: return CB_RESULT_LOCATION_DISALLOW;
-        distcenter_min_distance_forest;
+        distcenter_min_distance_oil_refinery;
 }
 
 switch (FEAT_INDUSTRIES, SELF, distcenter_count, industry_count(IND_DIST_CENTER) < max_industries) {
@@ -204,9 +200,14 @@ switch (FEAT_INDUSTRIES, SELF, petrol_plant_min_distance_foodprocplant, industry
         town_distance_check_20;
 }
 
-switch (FEAT_INDUSTRIES, SELF, petrol_plant_min_distance_superstore, industry_distance(IND_SUPERSTORE)) {
+switch (FEAT_INDUSTRIES, SELF, petrol_plant_min_distance_rcyc_plant, industry_distance(0x87)) {
         0..16: return CB_RESULT_LOCATION_DISALLOW;
         petrol_plant_min_distance_foodprocplant;
+}
+
+switch (FEAT_INDUSTRIES, SELF, petrol_plant_min_distance_superstore, industry_distance(IND_SUPERSTORE)) {
+        0..16: return CB_RESULT_LOCATION_DISALLOW;
+        petrol_plant_min_distance_rcyc_plant;
 }
 
 switch (FEAT_INDUSTRIES, SELF, petrol_plant_min_distance_shop, industry_distance(IND_SHOP)) {
@@ -279,10 +280,123 @@ switch (FEAT_INDUSTRIES, SELF, petrol_plant_check_location, ((extra_callback_inf
         petrol_plant_count;
 }
 
+// Desalination Plant location checks
+switch (FEAT_INDUSTRIES, SELF, desal_plant_min_distance_foodprocplant, industry_distance(INDUSTRYTYPE_FOOD_PROCESSING_PLANT, 0)) {
+        0..16: return CB_RESULT_LOCATION_DISALLOW;
+        town_distance_check_20;
+}
+
+switch (FEAT_INDUSTRIES, SELF, desal_plant_min_distance_superstore, industry_distance(IND_SUPERSTORE)) {
+        0..16: return CB_RESULT_LOCATION_DISALLOW;
+        desal_plant_min_distance_foodprocplant;
+}
+
+switch (FEAT_INDUSTRIES, SELF, desal_plant_min_distance_shop, industry_distance(IND_SHOP)) {
+        0..16: return CB_RESULT_LOCATION_DISALLOW;
+        desal_plant_min_distance_superstore;
+}
+
+switch (FEAT_INDUSTRIES, SELF, desal_plant_min_distance_rcyc_plant, industry_distance(IND_RCYC_PLANT)) {
+        0..16: return CB_RESULT_LOCATION_DISALLOW;
+        desal_plant_min_distance_shop;
+}
+
+switch (FEAT_INDUSTRIES, SELF, desal_plant_min_distance_paper_mill, industry_distance(INDUSTRYTYPE_PAPER_MILL, 0)) {
+        0..16: return CB_RESULT_LOCATION_DISALLOW;
+        desal_plant_min_distance_rcyc_plant;
+}
+
+switch (FEAT_INDUSTRIES, SELF, desal_plant_min_distance_factory_tropic, industry_distance(INDUSTRYTYPE_TROPICAL_FACTORY, 0)) {
+        0..16: return CB_RESULT_LOCATION_DISALLOW;
+        desal_plant_min_distance_paper_mill;
+}
+
+switch (FEAT_INDUSTRIES, SELF, desal_plant_min_distance_factory_arctic, industry_distance(INDUSTRYTYPE_PRINTING_WORKS, 0)) {
+        0..16: return CB_RESULT_LOCATION_DISALLOW;
+        desal_plant_min_distance_factory_tropic;
+}
+
+switch (FEAT_INDUSTRIES, SELF, desal_plant_min_distance_factory_temp, industry_distance(INDUSTRYTYPE_TEMPERATE_FACTORY, 0)) {
+        0..16: return CB_RESULT_LOCATION_DISALLOW;
+        desal_plant_min_distance_factory_arctic;
+}
+
+switch (FEAT_INDUSTRIES, SELF, desal_plant_min_distance_desal_plant, industry_distance(IND_DESAL_PLANT)) {
+        0..49: return CB_RESULT_LOCATION_DISALLOW;
+        desal_plant_min_distance_factory_temp;
+}
+
+switch (FEAT_INDUSTRIES, SELF, desal_plant_count, industry_count(IND_DESAL_PLANT) < max(max_industries/2, 2)) {
+	0: return CB_RESULT_LOCATION_DISALLOW;
+	1: desal_plant_min_distance_desal_plant;
+}
+
+switch (FEAT_INDUSTRIES, SELF, desal_plant_check_location, ((extra_callback_info2 == IND_CREATION_FUND) || (extra_callback_info2 == IND_CREATION_PROSPECT))) {
+        1: return CB_RESULT_LOCATION_ALLOW;
+        desal_plant_count;
+}
+
+// Recycling Plant location checks, also see conflicting_ind_types[]
+switch (FEAT_INDUSTRIES, PARENT, rcyc_town_population_check, population) {
+    0..1999: return CB_RESULT_LOCATION_DISALLOW;
+    town_distance_check_20;
+}
+
+switch (FEAT_INDUSTRIES, SELF, rcyc_plant_count_2, industry_count(0x87)) {
+	0..max_industries: rcyc_town_population_check;
+	return CB_RESULT_LOCATION_DISALLOW;
+}
+
+switch (FEAT_INDUSTRIES, SELF, rcyc_plant_count, industry_count(0x86) >= industry_count(0x87)) {
+	1: rcyc_plant_count_2;
+	return CB_RESULT_LOCATION_DISALLOW;
+}
+
+switch (FEAT_INDUSTRIES, SELF, rcyc_plant_check_rcyc_depot, industry_town_count(0x86)) {
+    0: rcyc_plant_count;
+    return CB_RESULT_LOCATION_DISALLOW;
+}
+
+switch (FEAT_INDUSTRIES, SELF, rcyc_plant_min_distance_petrol_plant, industry_distance(0x83)) {
+        0..16: return CB_RESULT_LOCATION_DISALLOW;
+        rcyc_plant_check_rcyc_depot;
+}
+
+switch (FEAT_INDUSTRIES, SELF, rcyc_plant_check_location, ((extra_callback_info2 == IND_CREATION_FUND) || (extra_callback_info2 == IND_CREATION_PROSPECT))) {
+	1: return CB_RESULT_LOCATION_ALLOW;
+	rcyc_plant_min_distance_petrol_plant;
+}
+
+// Recycling Depot location checks, no conflicting_ind_types[]
+switch (FEAT_INDUSTRIES, SELF, rcyc_depot_count, industry_count(0x86)) {
+	0..max_industries: rcyc_town_population_check;
+	return CB_RESULT_LOCATION_DISALLOW;
+}
+
+// ensure there is no rcyc plant in this town
+switch (FEAT_INDUSTRIES, SELF, rcyc_depot_check_rcyc_plant, industry_town_count(0x87)) {
+    0: rcyc_depot_count;
+    return CB_RESULT_LOCATION_DISALLOW;
+}
+
+// ensure there is a rcyc plant on the map
+switch (FEAT_INDUSTRIES, SELF, rcyc_depot_check_rcyc_plant_exists, industry_count(0x87)) {
+    0: return CB_RESULT_LOCATION_DISALLOW;
+    rcyc_depot_check_rcyc_plant;
+}
+
+switch (FEAT_INDUSTRIES, SELF, rcyc_depot_check_location, ((extra_callback_info2 == IND_CREATION_FUND) || (extra_callback_info2 == IND_CREATION_PROSPECT))) {
+	1: return CB_RESULT_LOCATION_ALLOW;
+	rcyc_depot_check_rcyc_plant_exists;
+}
+
 switch (FEAT_INDUSTRIES, SELF, decide_check_location_switch, LOAD_TEMP(1)) {
 	IND_PETROL_PLANT: petrol_plant_check_location;
 	IND_DISTILLERY: distillery_check_location;
 	IND_DIST_CENTER: distcenter_check_location;
+	IND_DESAL_PLANT: desal_plant_check_location;
+	IND_RCYC_DEPOT: rcyc_depot_check_location;
+	IND_RCYC_PLANT: rcyc_plant_check_location;
 }
 
 #define INDUSTRY_LOCATION_SWITCHES(industry_id) \

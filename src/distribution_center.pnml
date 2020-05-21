@@ -54,7 +54,7 @@ tilelayout jrdistcenter_petr_tilelayout2 {
 }
 
 /* When we receive cargo, the counter (0x00) is reset, industry is initialised (0x0F). */
-produce(industry_distcenter_cargo_arrive_produce, [], [], [STORE_PERM(1, 0x0F), STORE_PERM(0, 0x00), 0])
+//produce(industry_distcenter_cargo_arrive_produce, [], [], [STORE_PERM(1, 0x0F), STORE_PERM(0, 0x00), 0])
 
 INDUSTRY_LOCATION_SWITCHES(IND_DIST_CENTER)
 
@@ -74,8 +74,13 @@ if (param_enable_distcenter) {
 			// costs from FIRS 3 bulk terminal
 			fund_cost_multiplier:	152;
 			remove_cost_multiplier:	0;
-			cargo_types:            [accept_cargo("FOOD"), accept_cargo("GOOD"), accept_cargo("PETR"), accept_cargo("BEER"), accept_cargo("RFPR"), accept_cargo("WOOD"), accept_cargo("BDMT"), accept_cargo("ENSP"), accept_cargo("FMSP"), accept_cargo("MNSP")];
-			min_cargo_distr:	    5;
+			accept_cargo_types:     [cargotype("FOOD"), cargotype("GOOD"), cargotype("PETR")];
+			prod_cargo_types:       [];
+			prod_multiplier:        [0, 0];
+			input_multiplier_1:     [0, 0];
+			input_multiplier_2:     [0, 0];
+			input_multiplier_3:     [0, 0];
+			//cargo_types:            [accept_cargo("FOOD"), accept_cargo("GOOD"), accept_cargo("PETR"), accept_cargo("BEER"), accept_cargo("RFPR"), accept_cargo("WOOD"), accept_cargo("BDMT"), accept_cargo("ENSP"), accept_cargo("FMSP"), accept_cargo("MNSP")];
 			prob_map_gen:		    param_manual_placement ? 0 : 2;
 			prob_in_game:		    param_manual_placement ? 0 : 2;
 			prospect_chance:	    1.0;
@@ -86,7 +91,7 @@ if (param_enable_distcenter) {
 		graphics {
 			monthly_prod_change:    industry_monthly_prod_change_switch;
             random_prod_change:     industry_random_prod_change_switch;
-			produce_cargo_arrival:	industry_distcenter_cargo_arrive_produce;
+			produce_cargo_arrival:	industry_blackhole_cargo_arrive_produce; //industry_distcenter_cargo_arrive_produce;
 			location_check:		    dist_center_water_check;
 			colour:			        (founder == 16) ? COLOUR_BROWN : founder_colour1;
 			cargo_subtype_display:	industry_remove_cargo_text;

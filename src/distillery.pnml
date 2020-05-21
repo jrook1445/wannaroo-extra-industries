@@ -28,8 +28,8 @@ tilelayout jrdistillery_tilelayout2 {
 
 INDUSTRY_LOCATION_SWITCHES(IND_DISTILLERY)
 
-//produce(industry_distillery_cargo_produce, waiting_cargo_1, waiting_cargo_2, waiting_cargo_3, waiting_cargo_1+waiting_cargo_2, 0, [STORE_PERM(1, 0x0F), STORE_PERM(0, 0x00)]);
-produce(industry_distillery_cargo_produce, [GRAI: incoming_cargo_waiting("GRAI"); WHEA: incoming_cargo_waiting("WHEA"); MAIZ: incoming_cargo_waiting("MAIZ"); FRUT: incoming_cargo_waiting("FRUT");], [BEER: (incoming_cargo_waiting("GRAI") + incoming_cargo_waiting("WHEA") + incoming_cargo_waiting("MAIZ") + incoming_cargo_waiting("FRUT"));], [STORE_PERM(1, 0x0F), STORE_PERM(0, 0x00), 0])
+produce(industry_distillery_cargo_produce, waiting_cargo_1, waiting_cargo_2, waiting_cargo_3, waiting_cargo_1+waiting_cargo_2+waiting_cargo_3, 0, [STORE_PERM(1, 0x0F), STORE_PERM(0, 0x00), 0]);
+//produce(industry_distillery_cargo_produce, [GRAI: incoming_cargo_waiting("GRAI"); WHEA: incoming_cargo_waiting("WHEA"); MAIZ: incoming_cargo_waiting("MAIZ"); FRUT: incoming_cargo_waiting("FRUT");], [BEER: (incoming_cargo_waiting("GRAI") + incoming_cargo_waiting("WHEA") + incoming_cargo_waiting("MAIZ") + incoming_cargo_waiting("FRUT"));], [STORE_PERM(1, 0x0F), STORE_PERM(0, 0x00), 0])
 
 if (param_enable_distillery) {
 
@@ -42,15 +42,29 @@ if (param_enable_distillery) {
 			// costs from FIRS 3 brewery
 			fund_cost_multiplier:	50;
 			remove_cost_multiplier:	0;
-			cargo_types:            [accept_cargo("GRAI"), accept_cargo("WHEA"), accept_cargo("MAIZ"), accept_cargo("FRUT"), produce_cargo("BEER", 0)];
+			accept_cargo_types:     [( (climate == CLIMATE_TROPIC) ? cargotype("MAIZ") : (climate == CLIMATE_ARCTIC) ? cargotype("WHEA") : cargotype("GRAI") ), cargotype("FRUT")];
+			prod_cargo_types:       [cargotype("BEER")];
+			prod_multiplier:        [0, 0];
+			input_multiplier_1:     [0, 0];
+			input_multiplier_2:     [0, 0];
+			input_multiplier_3:     [0, 0];
+			//cargo_types:            [accept_cargo("GRAI"), accept_cargo("WHEA"), accept_cargo("MAIZ"), accept_cargo("FRUT"), produce_cargo("BEER", 0)];
 			min_cargo_distr:	    5;
 			prob_map_gen:		    param_manual_placement ? 0 : 2;
 			prob_in_game:		    param_manual_placement ? 0 : 2;
-		prospect_chance:	        1.0;
+	    	prospect_chance:	    1.0;
 			map_colour:		        192;
 			name:			        string(STR_DISTILLERY_NAME);
 			nearby_station_name:	string(STR_DISTILLERY_STATION_NAME);
 		}
+		if (!cargotype_available("BEER")) {
+		    if (cargotype_available("FOOD")) { property { prod_cargo_types: [cargotype("FOOD")]; } }
+    	    else { property { prod_cargo_types: [cargotype("GOOD")]; } }
+	    }
+	    // FIRS 1-3
+	    if (grf_future_status("\F1\25\00\00", "\FF\FF\FF\00")) { property { accept_cargo_types: [cargotype("FRUT"), cargotype("GRAI"), cargotype("FMSP")]; } }
+	    // Manpower Industries, OpenGFX+ Industries
+	    if (grf_future_status("\4D\63\4D\69") || grf_future_status("\4F\47\2B\33")) { property { accept_cargo_types: [cargotype("FRUT"), cargotype("GRAI")]; } }
 		graphics {
 			monthly_prod_change:    industry_monthly_prod_change_switch;
             random_prod_change:     industry_random_prod_change_switch;

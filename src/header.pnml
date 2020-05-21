@@ -71,6 +71,24 @@ grf {
 	}
 
 	param {
+		param_enable_desal_plant {
+			type: bool;
+			def_value: 0;
+			name: string(STR_PARAM_NAME_ENABLE_DESAL_PLANT);
+			desc: string(STR_PARAM_DESC_ENABLE_DESAL_PLANT);
+		}
+	}
+
+	param {
+		param_enable_rcyc {
+			type: bool;
+			def_value: 0;
+			name: string(STR_PARAM_NAME_ENABLE_RCYC);
+			desc: string(STR_PARAM_DESC_ENABLE_RCYC);
+		}
+	}
+
+	param {
 		param_manual_placement {
 			type: bool;
 			def_value: 1;
@@ -92,5 +110,55 @@ grf {
 
 }
 
-cargotable {FOOD, GOOD, PETR, GRAI, WHEA, MAIZ, FRUT, BEER, COAL, OIL_, WOOD, RFPR, BDMT, ENSP, FMSP, MNSP, TOUR, PASS}
+// cargotable needs to match the cargotable in WRBI
+// add any additional cargos at the end, do not alphabetise
+
+cargotable {
+	BDMT,
+	BEER,
+	COAL,
+	COPR,
+	CORE,
+	DIAM,
+	FOOD,
+	FRUT,
+	GOLD,
+	GOOD,
+	GRAI,
+	GRVL,
+	IORE,
+	LVST,
+	MAIL,
+	MAIZ,
+	OIL_,
+	PAPR,
+	PASS,
+	PETR,
+	PLST,
+	RFPR,
+	RUBR,
+	STEL,
+	RCYC,
+	VALU,
+	WATR,
+	WDPR,
+	WHEA,
+	WOOD,
+	WSTE,
+	TOUR,
+	ENSP,
+	FMSP
+}
+
+param_rcyc_intro_year = 1950;
+
+// checking WRBI
+if (grf_future_status("\6A\64\72\83")) {
+
+    // disable WRExInd lumber mill if WRBI present
+    param_enable_lumber_mill = 0;
+
+    // disable WRExInd rcyc chain if WRBI rcyc chain enabled
+    param_enable_rcyc = !param["jdr\83", 13];
+}
 

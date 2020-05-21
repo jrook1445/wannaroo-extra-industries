@@ -37,12 +37,14 @@ switch (FEAT_INDUSTRIES, SELF, petrol_plant_water_check, water_distance) {
 }
 
 // we are repeating the produce block to ensure the perm 8, 9, 10 counts are updated correctly (for debugging)
-//produce(industry_petrolplant_cargo_produce, [STORE_PERM(LOAD_PERM(8)+waiting_cargo_1, 8), STORE_PERM(LOAD_PERM(9)+waiting_cargo_2, 9), STORE_PERM(LOAD_PERM(10)+waiting_cargo_3, 10), waiting_cargo_1], waiting_cargo_2, waiting_cargo_3, ((waiting_cargo_1+waiting_cargo_2+waiting_cargo_3)*LOAD_PERM(0x04)+50)/100, ((waiting_cargo_1+waiting_cargo_2+waiting_cargo_3)*LOAD_PERM(0x05)+50)/100, [STORE_PERM(1, 0x0F), STORE_PERM(0, 0x00), (waiting_cargo_1+waiting_cargo_2+waiting_cargo_3)>0]);
-produce(industry_petrolplant_cargo_produce, [COAL: incoming_cargo_waiting("COAL"); OIL_: incoming_cargo_waiting("OIL_"); WOOD: incoming_cargo_waiting("WOOD");], [RFPR: (LOAD_TEMP(2)*LOAD_PERM(0x04)+50)/100; PETR: (LOAD_TEMP(2)*LOAD_PERM(0x05)+50)/100;], [STORE_PERM(1, 0x0F), STORE_PERM(0, 0x00), LOAD_TEMP(2)>0])
+produce(industry_petrolplant_cargo_produce, [STORE_PERM(LOAD_PERM(8)+waiting_cargo_1, 8), STORE_PERM(LOAD_PERM(9)+waiting_cargo_2, 9), STORE_PERM(LOAD_PERM(10)+waiting_cargo_3, 10), waiting_cargo_1], waiting_cargo_2, waiting_cargo_3, ((waiting_cargo_1+waiting_cargo_2+waiting_cargo_3)*LOAD_PERM(0x04)+50)/100, ((waiting_cargo_1+waiting_cargo_2+waiting_cargo_3)*LOAD_PERM(0x05)+50)/100, [STORE_PERM(1, 0x0F), STORE_PERM(0, 0x00), (waiting_cargo_1+waiting_cargo_2+waiting_cargo_3)>0]);
+//produce(industry_petrolplant_cargo_produce, [COAL: incoming_cargo_waiting("COAL"); OIL_: incoming_cargo_waiting("OIL_"); WOOD: incoming_cargo_waiting("WOOD");], [RFPR: (LOAD_TEMP(2)*LOAD_PERM(0x04)+50)/100; PETR: (LOAD_TEMP(2)*LOAD_PERM(0x05)+50)/100;], [STORE_PERM(1, 0x0F), STORE_PERM(0, 0x00), LOAD_TEMP(2)>0])
 
+/*
 switch (FEAT_INDUSTRIES, SELF, industry_petrolplant_cargo_arrival, [STORE_TEMP(incoming_cargo_waiting("COAL")+incoming_cargo_waiting("OIL_")+incoming_cargo_waiting("WOOD"), 2), STORE_PERM(LOAD_PERM(8)+incoming_cargo_waiting("COAL"), 8), STORE_PERM(LOAD_PERM(9)+incoming_cargo_waiting("OIL_"), 9), STORE_PERM(LOAD_PERM(10)+incoming_cargo_waiting("WOOD"), 10), 1]) {
     industry_petrolplant_cargo_produce;
 }
+*/
 
 // need to compensate for the fact that transported_last_month_pcts are really not very responsive/indicative
 // previous complicated calcs worked but were not responsive enough
@@ -62,18 +64,18 @@ switch (FEAT_INDUSTRIES, SELF, industry_petrolplant_calc_output_ratios_90, [STOR
 	industry_petrolplant_calc_output_ratios_update;
 }
 
-//switch (FEAT_INDUSTRIES, SELF, industry_petrolplant_calc_output_ratios_2, abs(transported_last_month_pct_1 - transported_last_month_pct_2)) {
+switch (FEAT_INDUSTRIES, SELF, industry_petrolplant_calc_output_ratios_2, abs(transported_last_month_pct_1 - transported_last_month_pct_2)) {
 // jrook 20200502
 // transported % seems to be in range 0-255 in nml 0.5.0 (fixed in 0.5.1)
-switch (FEAT_INDUSTRIES, SELF, industry_petrolplant_calc_output_ratios_2, abs(transported_last_month_pct("RFPR") - transported_last_month_pct("PETR"))) {
+//switch (FEAT_INDUSTRIES, SELF, industry_petrolplant_calc_output_ratios_2, abs(transported_last_month_pct("RFPR") - transported_last_month_pct("PETR"))) {
 	0..10: industry_petrolplant_calc_output_ratios_50; // 0-10
 	11..25: industry_petrolplant_calc_output_ratios_75; // 11-25
 	26..100: industry_petrolplant_calc_output_ratios_90; // 26-100
 	return CB_FAILED;
 }
 
-//switch (FEAT_INDUSTRIES, SELF, industry_petrolplant_calc_output_ratios, STORE_TEMP(transported_last_month_pct_1 >= transported_last_month_pct_2 ? 0 : -1, 1)) {
-switch (FEAT_INDUSTRIES, SELF, industry_petrolplant_calc_output_ratios, STORE_TEMP(transported_last_month_pct("RFPR") >= transported_last_month_pct("PETR") ? 0 : -1, 1)) {
+switch (FEAT_INDUSTRIES, SELF, industry_petrolplant_calc_output_ratios, STORE_TEMP(transported_last_month_pct_1 >= transported_last_month_pct_2 ? 0 : -1, 1)) {
+//switch (FEAT_INDUSTRIES, SELF, industry_petrolplant_calc_output_ratios, STORE_TEMP(transported_last_month_pct("RFPR") >= transported_last_month_pct("PETR") ? 0 : -1, 1)) {
 	industry_petrolplant_calc_output_ratios_2;
 }
 
@@ -88,7 +90,13 @@ if (param_enable_petrol_plant) {
 			// costs from FIRS 3 oil refinery
 			fund_cost_multiplier:	200;
 			remove_cost_multiplier:	0;
-			cargo_types:            [accept_cargo("COAL"), accept_cargo("OIL_"), accept_cargo("WOOD"), produce_cargo("RFPR", 0), produce_cargo("PETR", 0)];
+			accept_cargo_types:     [cargotype_available("WSTE") ? cargotype("WSTE") : cargotype("COAL"), cargotype("OIL_"), cargotype("WOOD")];
+			prod_cargo_types:       [cargotype_available("RFPR") ? cargotype("RFPR") : cargotype("GOOD"), cargotype_available("PETR") ? cargotype("PETR") : cargotype("GOOD")];
+			prod_multiplier:        [0, 0];
+			input_multiplier_1:     [0, 0];
+			input_multiplier_2:     [0, 0];
+			input_multiplier_3:     [0, 0];
+			//cargo_types:            [accept_cargo("COAL"), accept_cargo("OIL_"), accept_cargo("WOOD"), produce_cargo("RFPR", 0), produce_cargo("PETR", 0)];
 			min_cargo_distr:	    5;
 			prob_map_gen:		    param_manual_placement ? 0 : 2;
 			prob_in_game:		    param_manual_placement ? 0 : 2;
@@ -100,9 +108,9 @@ if (param_enable_petrol_plant) {
 		graphics {
 			monthly_prod_change:    industry_petrolplant_calc_output_ratios;
             random_prod_change:     industry_random_prod_change_switch;
-            produce_cargo_arrival:	industry_petrolplant_cargo_arrival;
+            produce_cargo_arrival:	industry_petrolplant_cargo_produce; //industry_petrolplant_cargo_arrival;
 			location_check:		    petrol_plant_water_check;
-			colour:			        (founder == 16) ? (grf_future_status("\4A\44\FA\B1") ? COLOUR_MAUVE : COLOUR_BROWN) : founder_colour1;
+			colour:			        (founder == 16) ? (grf_future_status("\4A\44\FA\B1") ? COLOUR_WHITE : COLOUR_PALE_GREEN) : founder_colour1; // mauve, brown
 			cargo_subtype_display:	industry_remove_cargo_text;
 		}
 	}

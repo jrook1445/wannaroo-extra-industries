@@ -1,0 +1,161 @@
+/* desal_plant_tiles.pnml */
+
+/*
+    License: GPL v2
+    https://github.com/jrook1445/wannaroo-extra-industries
+*/
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_water_check, (nearby_tile_water_class(0, 0) == WATER_CLASS_SEA)) {
+    1: return CB_RESULT_LOCATION_ALLOW;
+    return CB_RESULT_LOCATION_DISALLOW;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_slope_check_se, nearby_tile_slope(0, 0) == SLOPE_SE) {
+    0: return CB_RESULT_LOCATION_DISALLOW;
+    tile_water_check;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_slope_check_sw, nearby_tile_slope(0, 0) == SLOPE_SW) {
+    0: return CB_RESULT_LOCATION_DISALLOW;
+    tile_water_check;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_slope_check_nw, nearby_tile_slope(0, 0) == SLOPE_NW) {
+    0: return CB_RESULT_LOCATION_DISALLOW;
+    tile_water_check;
+}
+
+switch (FEAT_INDUSTRYTILES, SELF, tile_slope_check_ne, nearby_tile_slope(0, 0) == SLOPE_NE) {
+    0: return CB_RESULT_LOCATION_DISALLOW;
+    tile_water_check;
+}
+
+spritelayout jrdesalplant_tile_pump_spritelayout {
+	ground { sprite: GROUNDSPRITE_CONCRETE; }
+	building { sprite: (construction_state==0 ? 2350 : construction_state==3 ? 2352 : 2351); xoffset: 3; yoffset: 0; recolour_mode: RECOLOUR_REMAP; palette: palette_1cc(COLOUR_RED); }
+}
+
+spritelayout jrdesalplant_tile_talltanks_se_spritelayout {
+	ground { sprite: GROUNDSPRITE_CONCRETE; }
+	building { sprite: (construction_state==0 ? 2081 : construction_state==3 ? 2083 : 2082); recolour_mode: RECOLOUR_REMAP; palette: palette_1cc(COLOUR_YELLOW); }
+	building { sprite: (construction_state==0 ? 2081 : construction_state==3 ? 2083 : 2082); yoffset: 8; recolour_mode: RECOLOUR_REMAP; palette: palette_1cc(COLOUR_DARK_BLUE); }
+	building { sprite: (construction_state==0 ? 2081 : construction_state==3 ? 2083 : 2082); xoffset: 8; recolour_mode: RECOLOUR_REMAP; palette: palette_1cc(COLOUR_YELLOW); }
+	building { sprite: (construction_state==0 ? 2081 : construction_state==3 ? 2083 : 2082); xoffset: 8; yoffset: 8; recolour_mode: RECOLOUR_REMAP; palette: palette_1cc(COLOUR_DARK_BLUE); }
+}
+
+spritelayout jrdesalplant_tile_talltanks_sw_spritelayout {
+	ground { sprite: GROUNDSPRITE_CONCRETE; }
+	building { sprite: (construction_state==0 ? 2081 : construction_state==3 ? 2083 : 2082); recolour_mode: RECOLOUR_REMAP; palette: palette_1cc(COLOUR_YELLOW); }
+	building { sprite: (construction_state==0 ? 2081 : construction_state==3 ? 2083 : 2082); yoffset: 8; recolour_mode: RECOLOUR_REMAP; palette: palette_1cc(COLOUR_YELLOW); }
+	building { sprite: (construction_state==0 ? 2081 : construction_state==3 ? 2083 : 2082); xoffset: 8; recolour_mode: RECOLOUR_REMAP; palette: palette_1cc(COLOUR_DARK_BLUE); }
+	building { sprite: (construction_state==0 ? 2081 : construction_state==3 ? 2083 : 2082); xoffset: 8; yoffset: 8; recolour_mode: RECOLOUR_REMAP; palette: palette_1cc(COLOUR_DARK_BLUE); }
+}
+
+spritelayout jrdesalplant_tile_talltanks_nw_spritelayout {
+	ground { sprite: GROUNDSPRITE_CONCRETE; }
+	building { sprite: (construction_state==0 ? 2081 : construction_state==3 ? 2083 : 2082); recolour_mode: RECOLOUR_REMAP; palette: palette_1cc(COLOUR_DARK_BLUE); }
+	building { sprite: (construction_state==0 ? 2081 : construction_state==3 ? 2083 : 2082); yoffset: 8; recolour_mode: RECOLOUR_REMAP; palette: palette_1cc(COLOUR_YELLOW); }
+	building { sprite: (construction_state==0 ? 2081 : construction_state==3 ? 2083 : 2082); xoffset: 8; recolour_mode: RECOLOUR_REMAP; palette: palette_1cc(COLOUR_DARK_BLUE); }
+	building { sprite: (construction_state==0 ? 2081 : construction_state==3 ? 2083 : 2082); xoffset: 8; yoffset: 8; recolour_mode: RECOLOUR_REMAP; palette: palette_1cc(COLOUR_YELLOW); }
+}
+
+spritelayout jrdesalplant_tile_talltanks_ne_spritelayout {
+	ground { sprite: GROUNDSPRITE_CONCRETE; }
+	building { sprite: (construction_state==0 ? 2081 : construction_state==3 ? 2083 : 2082); recolour_mode: RECOLOUR_REMAP; palette: palette_1cc(COLOUR_DARK_BLUE); }
+	building { sprite: (construction_state==0 ? 2081 : construction_state==3 ? 2083 : 2082); yoffset: 8; recolour_mode: RECOLOUR_REMAP; palette: palette_1cc(COLOUR_DARK_BLUE); }
+	building { sprite: (construction_state==0 ? 2081 : construction_state==3 ? 2083 : 2082); xoffset: 8; recolour_mode: RECOLOUR_REMAP; palette: palette_1cc(COLOUR_YELLOW); }
+	building { sprite: (construction_state==0 ? 2081 : construction_state==3 ? 2083 : 2082); xoffset: 8; yoffset: 8; recolour_mode: RECOLOUR_REMAP; palette: palette_1cc(COLOUR_YELLOW); }
+}
+
+spritelayout jrdesalplant_tile_widetank_spritelayout {
+	ground { sprite: GROUNDSPRITE_CONCRETE; }
+	building { sprite: (construction_state==0 ? 2078 : construction_state==3 ? 2080 : 2079); xoffset: 2; yoffset: 2; recolour_mode: RECOLOUR_REMAP; palette: PALETTE_USE_DEFAULT; }
+}
+
+item (FEAT_INDUSTRYTILES, jrdesalplant_tile_pump, 17) {
+	property {
+		substitute: 0;
+	}
+	graphics {
+		default: jrdesalplant_tile_pump_spritelayout;
+		foundations: return CB_RESULT_FOUNDATIONS;
+		autoslope: return CB_RESULT_AUTOSLOPE;
+	}
+}
+
+item (FEAT_INDUSTRYTILES, jrdesalplant_tile_pump_sloped, 18) {
+	property {
+		substitute: 0;
+		land_shape_flags: bitmask(LSF_ALLOW_ON_WATER);
+	}
+	graphics {
+		default: jrdesalplant_tile_pump_spritelayout;
+		foundations: return CB_RESULT_FOUNDATIONS;
+		autoslope: return CB_RESULT_AUTOSLOPE;
+	}
+}
+
+item (FEAT_INDUSTRYTILES, jrdesalplant_tile_talltanks_se, 19) {
+	property {
+		substitute: 0;
+		land_shape_flags: bitmask(LSF_ALLOW_ON_WATER);
+	}
+	graphics {
+		default: jrdesalplant_tile_talltanks_se_spritelayout;
+		foundations: return CB_RESULT_FOUNDATIONS;
+		autoslope: return CB_RESULT_AUTOSLOPE;
+		tile_check: tile_slope_check_se;
+	}
+}
+
+item (FEAT_INDUSTRYTILES, jrdesalplant_tile_talltanks_sw, 20) {
+	property {
+		substitute: 0;
+		land_shape_flags: bitmask(LSF_ALLOW_ON_WATER);
+	}
+	graphics {
+		default: jrdesalplant_tile_talltanks_sw_spritelayout;
+		foundations: return CB_RESULT_FOUNDATIONS;
+		autoslope: return CB_RESULT_AUTOSLOPE;
+		tile_check: tile_slope_check_sw;
+	}
+}
+
+item (FEAT_INDUSTRYTILES, jrdesalplant_tile_talltanks_nw, 21) {
+	property {
+		substitute: 0;
+		land_shape_flags: bitmask(LSF_ALLOW_ON_WATER);
+	}
+	graphics {
+		default: jrdesalplant_tile_talltanks_nw_spritelayout;
+		foundations: return CB_RESULT_FOUNDATIONS;
+		autoslope: return CB_RESULT_AUTOSLOPE;
+		tile_check: tile_slope_check_nw;
+	}
+}
+
+item (FEAT_INDUSTRYTILES, jrdesalplant_tile_talltanks_ne, 22) {
+	property {
+		substitute: 0;
+		land_shape_flags: bitmask(LSF_ALLOW_ON_WATER);
+	}
+	graphics {
+		default: jrdesalplant_tile_talltanks_ne_spritelayout;
+		foundations: return CB_RESULT_FOUNDATIONS;
+		autoslope: return CB_RESULT_AUTOSLOPE;
+		tile_check: tile_slope_check_ne;
+	}
+}
+
+item (FEAT_INDUSTRYTILES, jrdesalplant_tile_widetank, 23) {
+	property {
+		substitute: 0;
+	}
+	graphics {
+	    default: jrdesalplant_tile_widetank_spritelayout;
+		foundations: return CB_RESULT_FOUNDATIONS;
+		autoslope: return CB_RESULT_AUTOSLOPE;
+		tile_check: tile_industry_check_1;
+	}
+}
+
