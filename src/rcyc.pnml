@@ -135,7 +135,7 @@ produce (rcyc_plant_produce_waste_plus_1, waiting_cargo_1, waiting_cargo_2, wait
 produce (rcyc_plant_produce_waste, waiting_cargo_1, waiting_cargo_2, waiting_cargo_3, waiting_cargo_1, 0, 0);
 
 switch (FEAT_INDUSTRIES, SELF, industry_rcyc_plant_produce_256, LOAD_PERM(1)) {
-    0..66:  rcyc_plant_produce_waste;
+    0..64:  rcyc_plant_produce_waste;
     rcyc_plant_produce_waste_plus_1;
 }
 

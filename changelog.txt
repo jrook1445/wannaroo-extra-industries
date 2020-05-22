@@ -1,6 +1,6 @@
 Wannaroo Extra Industries (WRExInd)
 
-1.0 - 2020-05-xx
+1.0 - 2020-05-22
 -----------------------------------------------------------
 Initial release
 

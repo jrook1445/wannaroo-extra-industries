@@ -1,0 +1,111 @@
+Distribution Center NFO Tweaks
+
+0. be sure to re-confirm sprite numbers
+
+1. new industry property
+
+sprite ###
+
+increase \b number property 00 0A by 1
+
+change property 11 to \dxFFFFFFFF
+
+add property
+
+26 07 09 06 01 13 00 20 21
+
+=======
+
+442 * 165 00 0A \b20 01 FF \wx0000
+08 01
+16 FF FF FF
+0A \b2 \d84
+00 00 FE \wx0002
+00 01 FE \wx0004
+01 00 FE \wx0002
+01 01 FE \wx0001
+01 02 FE \wx0004
+02 00 FE \wx0002
+02 01 FE \wx0003
+02 02 FE \wx0004
+00 80
+00 00 FE \wx0002
+00 01 FE \wx0002
+00 02 FE \wx0002
+01 00 FE \wx0001
+01 01 FE \wx0001
+01 02 FE \wx0003
+02 01 FE \wx0004
+02 02 FE \wx0004
+00 80
+
+0B 00
+0F 98
+23 \dx00000000
+11 \dxFFFFFFFF
+10 \wxFFFF
+12 00
+13 00
+1C \dx00000000
+1D \dx00000000
+1E \dx00000000
+17 00
+18 00
+20 \dxFFFFFFFF
+19 BD
+1F \wxDC00
+24 \wxDC01
+26 07 09 06 01 13 00 20 21
+
+=======
+
+2. new industry tiles property
+
+4 tiles
+
+4 sprites begin at ###
+
+increase \b number property 00 09 by 1
+
+change property 0A to \wx0000
+
+add property
+
+13 07 09 08 06 08 01 08 13 08 00 08 20 08 21 08
+
+=======
+
+406 * 34 00 09 \b5 01 FF \wx0002
+08 00
+0A \wx0000
+0B \wx0000
+0C \wx0000
+13 07 09 08 06 08 01 08 13 08 00 08 20 08 21 08
+
+410 * 34 00 09 \b5 01 FF \wx0003
+08 00
+0A \wx0000
+0B \wx0000
+0C \wx0000
+13 07 09 08 06 08 01 08 13 08 00 08 20 08 21 08
+
+414 * 34 00 09 \b5 01 FF \wx0004
+08 00
+0A \wx0000
+0B \wx0000
+0C \wx0000
+13 07 09 08 06 08 01 08 13 08 00 08 20 08 21 08
+
+418 * 34 00 09 \b5 01 FF \wx0005
+08 00
+0A \wx0000
+0B \wx0000
+0C \wx0000
+13 07 09 08 06 08 01 08 13 08 00 08 20 08 21 08
+
+=======
+
+if grfcodec complains about sprite lengths, adjust sprite lengths and recompile
+
+nforenum seems to mess up the nfo file, so don't use it
+
