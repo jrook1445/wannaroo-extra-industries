@@ -18,4 +18,8 @@
 #include "src/petrol_plant.pnml"
 #include "src/lumber_mill.pnml"
 #include "src/city_hall.pnml"
+#include "src/tiles/desal_plant_tiles.pnml"
+#include "src/desal_plant.pnml"
+#include "src/tiles/rcyc_tiles.pnml"
+#include "src/rcyc.pnml"
 

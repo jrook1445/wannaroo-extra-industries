@@ -1,7 +1,7 @@
 ##grflangid 0x00
 ##plural 0
 STR_GRF_NAME                                :Wannaroo Extra Industries (WRExInd)
-STR_GRF_DESCRIPTION                         :{}Wannaroo Extra Industries are some industries I've written for experimentation/testing/fun, but may be useful in your games.{}{}The set includes: Distribution Center, Lumber Mill, Distillery, Hydrocracking Plant, City Hall.{}{}See readme for more info.{}{}License: GPL v2
+STR_GRF_DESCRIPTION                         :{}Wannaroo Extra Industries are some industries I've written for experimentation/testing/fun, but may be useful in your games.{}{}The set includes: Distribution Center, Lumber Mill, Distillery, Hydrocracking Plant, City Hall, Desalination Plant, Recycling Chain.{}{}See readme for more info.{}{}License: GPL v2
 STR_GRF_URL                                 :https://github.com/jrook1445/wannaroo-extra-industries
 
 #Error strings
@@ -14,6 +14,9 @@ STR_DISTCENTER_NAME						    :Distribution Center
 STR_DISTILLERY_NAME						    :Distillery
 STR_PETROL_PLANT_NAME						:Hydrocracking Plant
 STR_CITY_HALL_NAME						    :City Hall
+STR_DESAL_PLANT_NAME                        :Desalination Plant
+STR_RCYC_DEPOT_NAME                         :Recycling Depot
+STR_RCYC_PLANT_NAME                         :Recycling Plant
 
 #Station names
 
@@ -22,8 +25,11 @@ STR_LUMBER_MILL_STATION_NAME				:{STRING} Lumber Mill
 STR_DISTILLERY_STATION_NAME					:{STRING} Distillery
 STR_PETROL_PLANT_STATION_NAME				:{STRING} Hydrocracking Plant
 STR_CITY_HALL_STATION_NAME					:{STRING} City Hall
+STR_DESAL_PLANT_STATION_NAME                :{STRING} Desalination Plant
+STR_RCYC_DEPOT_STATION_NAME                 :{STRING} Recycling Depot
+STR_RCYC_PLANT_STATION_NAME                 :{STRING} Recycling Plant
 
-#Industry debug text
+#Pikka TaI town info
 
 STR_INDUSTRY_CITY_HALL_INFO_TEXT_METRO				:{}{SILVER}Metropolis{BLACK}{}{}{TINYFONT}Population limit:{}10,000 (1800){}20,000 (1900){}30,000 (2000){}{}population: {COMMA}{}city flag: {COMMA}{}town class: {COMMA}
 STR_INDUSTRY_CITY_HALL_INFO_TEXT_IND_CITY			:{}{SILVER}Industrial City{BLACK}{}{}{TINYFONT}Population limit:{}5,000 (1800){}10,000 (1900){}15,000 (2000){}{}population: {COMMA}{}city flag: {COMMA}{}town class: {COMMA}
@@ -46,25 +52,41 @@ STR_ERR_NO_DESERT_ONLY						:... cannot be built in desert areas
 #Parameters
 
 STR_PARAM_NAME_ENABLE_DISTCENTER			:Distribution Center
-STR_PARAM_DESC_ENABLE_DISTCENTER			:Accepts: food, goods, petrol, alcohol, chemicals, wood, building materials, FIRS supplies{}Produces: nothing
+STR_PARAM_DESC_ENABLE_DISTCENTER			:Accepts: food, goods, petrol, alcohol, building materials, engineering & farm supplies{}Produces: nothing
 
 STR_PARAM_NAME_ENABLE_LUMBER_MILL			:Lumber Mill
 STR_PARAM_DESC_ENABLE_LUMBER_MILL			:Copy of default lumber mill for tree growth control. Available in all climates. Enable if you need tree growth control or an industry to produce wood.
 
 STR_PARAM_NAME_ENABLE_DISTILLERY			:Distillery
-STR_PARAM_DESC_ENABLE_DISTILLERY			:Accepts: grain|wheat|maize, fruit{}Produces: alcohol
+STR_PARAM_DESC_ENABLE_DISTILLERY			:Accepts: grain | wheat | maize, fruit{}Produces: alcohol
 
 STR_PARAM_NAME_ENABLE_PETROL_PLANT			:Hydrocracking Plant
-STR_PARAM_DESC_ENABLE_PETROL_PLANT			:Accepts: coal, oil, wood{}Produces: chemicals, petrol{}{}Dynamic output based on transported %
+STR_PARAM_DESC_ENABLE_PETROL_PLANT			:Accepts: waste | coal, oil, wood{}Produces: chemicals, petrol{}{}Dynamic output based on transported %
 
 STR_PARAM_NAME_ENABLE_CITY_HALL			    :City Hall
 STR_PARAM_DESC_ENABLE_CITY_HALL			    :Accepts & produces tourists (if present), otherwise passengers. Manual placement only.{}{}Displays town information for Pikka's TaI house set (version Gamma 1).
+
+STR_PARAM_NAME_ENABLE_DESAL_PLANT   	    :Desalination Plant
+STR_PARAM_DESC_ENABLE_DESAL_PLANT		    :Accepts: nothing{}Produces*: chemicals (temp, arctic) | water (tropic), stone | chemicals{}{}Must be located next to ocean/sea. Either water or chemicals must be in-game for this industry to appear.{}{}*defaults for Wannaroo Basic Industries. Produced cargos will vary depending on your in-game industry set.
+
+STR_PARAM_NAME_ENABLE_RCYC                  :Recycling Chain
+STR_PARAM_DESC_ENABLE_RCYC                  :available from 1950
 
 STR_PARAM_NAME_MANUAL_PLACEMENT				:Manual placement
 STR_PARAM_DESC_MANUAL_PLACEMENT				:Off (default): industries are placed on map generation and can appear in game. On: industries must be manually placed.
 
 STR_PARAM_NAME_CLOSURE_PROTECTION_TIME		:Closure protection period
 STR_PARAM_DESC_CLOSURE_PROTECTION_TIME		:Industries will be protected from closure for this many months: default 60, max 600, min 0. A value of 0 will disable industry closure.
+
+#Cargo
+
+STR_CARGO_NAME_WASTE					    :Waste
+STR_CID_WASTE							    :{TINYFONT}WS
+STR_CARGO_UNIT_WASTE					    :{WEIGHT} of waste
+
+STR_CARGO_NAME_RECYCLABLES                  :Recyclables
+STR_CID_RECYCLABLES                         :{TINYFONT}RC
+STR_CARGO_UNIT_RECYCLABLES                  :{WEIGHT} of recyclables
 
 #string strings
 STR_EMPTY_STRING						    :
