@@ -29,7 +29,7 @@
 
 9 * 2099 14 "C" "INFO"
 "T" "URL_" 7F "https://github.com/jrook1445/wannaroo-extra-industries" 00
-"B" "VRSN" \w4 \dx000003E8
+"B" "VRSN" \w4 \dx0000044C
 "B" "MINV" \w4 \dx000003E8
 "B" "NPAR" \w1 0A
 "C" "PARA"
