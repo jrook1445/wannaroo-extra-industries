@@ -5,7 +5,7 @@
 // Escapes: D= = DR D+ = DF D- = DC Du* = DM D* = DnF Du<< = DnC D<< = DO D& D| Du/ D/ Du% D%
 // Format: spritenum imagefile depth xpos ypos xsize ysize xrel yrel zoom flags
 
-0 * 4 \d1209
+0 * 4 \d1211
 
 // param[124] = param[161]
 1 * 5 0D 7C \D= A1 00
@@ -27,11 +27,11 @@
 
 8 * 52 0B 03 7F FF "\80 is not designed to work with toyland climate." 00
 
-9 * 1856 14 "C" "INFO"
+9 * 2099 14 "C" "INFO"
 "T" "URL_" 7F "https://github.com/jrook1445/wannaroo-extra-industries" 00
 "B" "VRSN" \w4 \dx000003E8
 "B" "MINV" \w4 \dx000003E8
-"B" "NPAR" \w1 09
+"B" "NPAR" \w1 0A
 "C" "PARA"
 "C" \d0
 "T" "NAME" 7F "Distribution Center" 00
@@ -90,9 +90,16 @@
 "B" "DFLT" \w4 \dx00000001
 00
 "C" \d8
+"T" "NAME" 7F "Max RCYC prod rate" 00
+"T" "DESC" 7F "Maximum recyclables produced each production tick: default 64, max 255, min 16.\0D\0DRCYC production will be the minimum of either the population-based rate or this parameter." 00
+"B" "MASK" \w1 08
+"B" "LIMI" \w8 \d16 \d255
+"B" "DFLT" \w4 \dx00000040
+00
+"C" \d9
 "T" "NAME" 7F "Closure protection period" 00
 "T" "DESC" 7F "Industries will be protected from closure for this many months: default 60, max 600, min 0. A value of 0 will disable industry closure." 00
-"B" "MASK" \w1 08
+"B" "MASK" \w1 09
 "B" "LIMI" \w8 \d0 \d600
 "B" "DFLT" \w4 \dx0000003C
 00
@@ -196,17 +203,17 @@
 \wx8000 \dx00000001 \dx00000000 	// Bogus range to avoid nvar == 0
 \wx8000 // default: return 0;
 
-// param[125] = param[8]
-34 * 5 0D 7D \D= 08 00
+// param[125] = param[9]
+34 * 5 0D 7D \D= 09 00
 
 35 * 12 06
-08 04 FF \wx0006
+09 04 FF \wx0006
 7D 04 FF \wx0062
 FF
 
 // Name: industry_random_prod_change_switch
 36 * 104 02 0A FD 89
-1A 20 \dx00000000 	// param[8]
+1A 20 \dx00000000 	// param[9]
 \2cmp 1A 20 \dx00000000
 \2& 1A 20 \dx00000001
 \2sto 1A 20 \dx00000080 	// guard
@@ -4715,7 +4722,7 @@ A7 20 \dx000000FF
 \wx00FD \dx00000029 \dx00000029 	// industry_random_prod_change_switch;
 \wx00FE \dx00000035 \dx00000035 	// industry_petrolplant_calc_output_ratios;
 \wx00F8 \dx00000037 \dx00000037 	// industry_remove_cargo_text;
-\wx00F4 \dx0000014A \dx0000014A 	// return ((var[0xA7, 0, 255] == 16) ? (grf_future_status([<nml.expression.string_literal.StringLiteral object at 0x7f50bd502b38>]) ? 15 : 1) : var[0x45, 24, 15])
+\wx00F4 \dx0000014A \dx0000014A 	// return ((var[0xA7, 0, 255] == 16) ? (grf_future_status([<nml.expression.string_literal.StringLiteral object at 0x7ff4f6f82518>]) ? 15 : 1) : var[0x45, 24, 15])
 \wx00FB // @CB_FAILED0A;
 
 748 * 9 07 7D 04 \7= \dx00000000 01
@@ -6569,29 +6576,40 @@ A7 20 \dx000000FF
 \wx00F2 // default: industry_IND_RCYC_PLANT_monopoly_check;
 
 // Name: industry_rcyc_depot_produce_256
-1039 * 10 02 0A F9 01 80 81 82 83 84 85
+1039 * 10 02 0A F9 01 80 81 82 84 85 86
+
+// param[125] = param[8]
+1040 * 5 0D 7D \D= 08 00
+
+1041 * 7 06
+7D 04 FF \wx003F
+FF
 
 // Name: industry_rcyc_depot_produce_256@registers
-1040 * 116 02 0A F9 89
+1042 * 153 02 0A F9 89
 1A 20 \dx00000000
 \2sto 1A 20 \dx00000080
 \2r 1A 20 \dx00000000
 \2sto 1A 20 \dx00000081
 \2r 1A 20 \dx00000000
 \2sto 1A 20 \dx00000082
+\2r 10 A0 \dxFFFFFFFF \dx00000000 \dx00000006
+\2+ 1A 20 \dx00000000 	// param[125]
+\2sto 1A 20 \dx00000083
 \2r 7C 02 20 \dxFFFFFFFF
 \2+ 10 A0 \dxFFFFFFFF \dx00000000 \dx00000006
-\2sto 1A 20 \dx00000083
-\2r 1A 20 \dx00000000
+\2< 7D 83 20 \dxFFFFFFFF
 \2sto 1A 20 \dx00000084
 \2r 1A 20 \dx00000000
-\2sto 1A 00 \dx00000085
+\2sto 1A 20 \dx00000085
+\2r 1A 20 \dx00000000
+\2sto 1A 00 \dx00000086
 \b1
 \wx00F9 \dx00000000 \dx00000000
 \wx00F9 //
 
 // Name: @return_action_0
-1041 * 27 02 0A F5 89
+1043 * 27 02 0A F5 89
 1A 20 \dx00000010
 \2psto 1A 20 \dx00000002
 \2r 1A 00 \dx00000000
@@ -6599,7 +6617,7 @@ A7 20 \dx000000FF
 \wx8000 // Return computed value
 
 // Name: @return_action_1
-1042 * 27 02 0A FC 89
+1044 * 27 02 0A FC 89
 1A 20 \dx00000011
 \2psto 1A 20 \dx00000002
 \2r 1A 00 \dx00000000
@@ -6607,7 +6625,7 @@ A7 20 \dx000000FF
 \wx8000 // Return computed value
 
 // Name: @return_action_2
-1043 * 27 02 0A FD 89
+1045 * 27 02 0A FD 89
 1A 20 \dx00000012
 \2psto 1A 20 \dx00000002
 \2r 1A 00 \dx00000000
@@ -6615,7 +6633,7 @@ A7 20 \dx000000FF
 \wx8000 // Return computed value
 
 // Name: @return_action_3
-1044 * 27 02 0A F1 89
+1046 * 27 02 0A F1 89
 1A 20 \dx00000013
 \2psto 1A 20 \dx00000002
 \2r 1A 00 \dx00000000
@@ -6623,7 +6641,7 @@ A7 20 \dx000000FF
 \wx8000 // Return computed value
 
 // Name: @return_action_4
-1045 * 27 02 0A FF 89
+1047 * 27 02 0A FF 89
 1A 20 \dx00000014
 \2psto 1A 20 \dx00000002
 \2r 1A 00 \dx00000000
@@ -6631,7 +6649,7 @@ A7 20 \dx000000FF
 \wx8000 // Return computed value
 
 // Name: @return_action_5
-1046 * 27 02 0A F7 89
+1048 * 27 02 0A F7 89
 1A 20 \dx00000016
 \2psto 1A 20 \dx00000002
 \2r 1A 00 \dx00000000
@@ -6639,7 +6657,7 @@ A7 20 \dx000000FF
 \wx8000 // Return computed value
 
 // Name: @return_action_6
-1047 * 27 02 0A F3 89
+1049 * 27 02 0A F3 89
 1A 20 \dx00000018
 \2psto 1A 20 \dx00000002
 \2r 1A 00 \dx00000000
@@ -6647,7 +6665,7 @@ A7 20 \dx000000FF
 \wx8000 // Return computed value
 
 // Name: @return_action_7
-1048 * 27 02 0A F8 89
+1050 * 27 02 0A F8 89
 1A 20 \dx0000001A
 \2psto 1A 20 \dx00000002
 \2r 1A 00 \dx00000000
@@ -6655,7 +6673,7 @@ A7 20 \dx000000FF
 \wx8000 // Return computed value
 
 // Name: @return_action_8
-1049 * 27 02 0A F4 89
+1051 * 27 02 0A F4 89
 1A 20 \dx0000001C
 \2psto 1A 20 \dx00000002
 \2r 1A 00 \dx00000000
@@ -6663,7 +6681,7 @@ A7 20 \dx000000FF
 \wx8000 // Return computed value
 
 // Name: @return_action_9
-1050 * 27 02 0A FE 89
+1052 * 27 02 0A FE 89
 1A 20 \dx0000001E
 \2psto 1A 20 \dx00000002
 \2r 1A 00 \dx00000000
@@ -6671,7 +6689,7 @@ A7 20 \dx000000FF
 \wx8000 // Return computed value
 
 // Name: @return_action_10
-1051 * 27 02 0A FA 89
+1053 * 27 02 0A FA 89
 1A 20 \dx00000020
 \2psto 1A 20 \dx00000002
 \2r 1A 00 \dx00000000
@@ -6679,7 +6697,7 @@ A7 20 \dx000000FF
 \wx8000 // Return computed value
 
 // Name: @return_action_11
-1052 * 27 02 0A F0 89
+1054 * 27 02 0A F0 89
 1A 20 \dx00000022
 \2psto 1A 20 \dx00000002
 \2r 1A 00 \dx00000000
@@ -6687,7 +6705,7 @@ A7 20 \dx000000FF
 \wx8000 // Return computed value
 
 // Name: @return_action_12
-1053 * 27 02 0A EF 89
+1055 * 27 02 0A EF 89
 1A 20 \dx00000025
 \2psto 1A 20 \dx00000002
 \2r 1A 00 \dx00000000
@@ -6695,7 +6713,7 @@ A7 20 \dx000000FF
 \wx8000 // Return computed value
 
 // Name: @return_action_13
-1054 * 27 02 0A EE 89
+1056 * 27 02 0A EE 89
 1A 20 \dx00000028
 \2psto 1A 20 \dx00000002
 \2r 1A 00 \dx00000000
@@ -6703,7 +6721,7 @@ A7 20 \dx000000FF
 \wx8000 // Return computed value
 
 // Name: @return_action_14
-1055 * 27 02 0A ED 89
+1057 * 27 02 0A ED 89
 1A 20 \dx0000002B
 \2psto 1A 20 \dx00000002
 \2r 1A 00 \dx00000000
@@ -6711,7 +6729,7 @@ A7 20 \dx000000FF
 \wx8000 // Return computed value
 
 // Name: @return_action_15
-1056 * 27 02 0A EC 89
+1058 * 27 02 0A EC 89
 1A 20 \dx0000002E
 \2psto 1A 20 \dx00000002
 \2r 1A 00 \dx00000000
@@ -6719,7 +6737,7 @@ A7 20 \dx000000FF
 \wx8000 // Return computed value
 
 // Name: @return_action_16
-1057 * 27 02 0A EB 89
+1059 * 27 02 0A EB 89
 1A 20 \dx00000031
 \2psto 1A 20 \dx00000002
 \2r 1A 00 \dx00000000
@@ -6727,7 +6745,7 @@ A7 20 \dx000000FF
 \wx8000 // Return computed value
 
 // Name: @return_action_17
-1058 * 27 02 0A EA 89
+1060 * 27 02 0A EA 89
 1A 20 \dx00000034
 \2psto 1A 20 \dx00000002
 \2r 1A 00 \dx00000000
@@ -6735,7 +6753,7 @@ A7 20 \dx000000FF
 \wx8000 // Return computed value
 
 // Name: @return_action_18
-1059 * 27 02 0A E9 89
+1061 * 27 02 0A E9 89
 1A 20 \dx00000037
 \2psto 1A 20 \dx00000002
 \2r 1A 00 \dx00000000
@@ -6743,7 +6761,7 @@ A7 20 \dx000000FF
 \wx8000 // Return computed value
 
 // Name: @return_action_19
-1060 * 27 02 0A E8 89
+1062 * 27 02 0A E8 89
 1A 20 \dx0000003B
 \2psto 1A 20 \dx00000002
 \2r 1A 00 \dx00000000
@@ -6751,7 +6769,7 @@ A7 20 \dx000000FF
 \wx8000 // Return computed value
 
 // Name: @return_action_20
-1061 * 27 02 0A E7 89
+1063 * 27 02 0A E7 89
 1A 20 \dx0000003F
 \2psto 1A 20 \dx00000002
 \2r 1A 00 \dx00000000
@@ -6759,7 +6777,7 @@ A7 20 \dx000000FF
 \wx8000 // Return computed value
 
 // Name: @return_action_21
-1062 * 27 02 0A E6 89
+1064 * 27 02 0A E6 89
 1A 20 \dx00000043
 \2psto 1A 20 \dx00000002
 \2r 1A 00 \dx00000000
@@ -6767,7 +6785,7 @@ A7 20 \dx000000FF
 \wx8000 // Return computed value
 
 // Name: @return_action_22
-1063 * 27 02 0A E5 89
+1065 * 27 02 0A E5 89
 1A 20 \dx00000047
 \2psto 1A 20 \dx00000002
 \2r 1A 00 \dx00000000
@@ -6775,7 +6793,7 @@ A7 20 \dx000000FF
 \wx8000 // Return computed value
 
 // Name: @return_action_23
-1064 * 27 02 0A E4 89
+1066 * 27 02 0A E4 89
 1A 20 \dx0000004B
 \2psto 1A 20 \dx00000002
 \2r 1A 00 \dx00000000
@@ -6783,7 +6801,7 @@ A7 20 \dx000000FF
 \wx8000 // Return computed value
 
 // Name: @return_action_24
-1065 * 27 02 0A E3 89
+1067 * 27 02 0A E3 89
 1A 20 \dx0000004F
 \2psto 1A 20 \dx00000002
 \2r 1A 00 \dx00000000
@@ -6791,7 +6809,7 @@ A7 20 \dx000000FF
 \wx8000 // Return computed value
 
 // Name: @return_action_25
-1066 * 27 02 0A E2 89
+1068 * 27 02 0A E2 89
 1A 20 \dx00000053
 \2psto 1A 20 \dx00000002
 \2r 1A 00 \dx00000000
@@ -6799,7 +6817,7 @@ A7 20 \dx000000FF
 \wx8000 // Return computed value
 
 // Name: @return_action_26
-1067 * 27 02 0A E1 89
+1069 * 27 02 0A E1 89
 1A 20 \dx00000057
 \2psto 1A 20 \dx00000002
 \2r 1A 00 \dx00000000
@@ -6807,7 +6825,7 @@ A7 20 \dx000000FF
 \wx8000 // Return computed value
 
 // Name: @return_action_27
-1068 * 27 02 0A E0 89
+1070 * 27 02 0A E0 89
 1A 20 \dx0000005C
 \2psto 1A 20 \dx00000002
 \2r 1A 00 \dx00000000
@@ -6815,7 +6833,7 @@ A7 20 \dx000000FF
 \wx8000 // Return computed value
 
 // Name: @return_action_28
-1069 * 27 02 0A DF 89
+1071 * 27 02 0A DF 89
 1A 20 \dx00000061
 \2psto 1A 20 \dx00000002
 \2r 1A 00 \dx00000000
@@ -6823,7 +6841,7 @@ A7 20 \dx000000FF
 \wx8000 // Return computed value
 
 // Name: @return_action_29
-1070 * 27 02 0A DE 89
+1072 * 27 02 0A DE 89
 1A 20 \dx00000066
 \2psto 1A 20 \dx00000002
 \2r 1A 00 \dx00000000
@@ -6831,7 +6849,7 @@ A7 20 \dx000000FF
 \wx8000 // Return computed value
 
 // Name: @return_action_30
-1071 * 27 02 0A DD 89
+1073 * 27 02 0A DD 89
 1A 20 \dx0000006B
 \2psto 1A 20 \dx00000002
 \2r 1A 00 \dx00000000
@@ -6839,7 +6857,7 @@ A7 20 \dx000000FF
 \wx8000 // Return computed value
 
 // Name: @return_action_31
-1072 * 27 02 0A DC 89
+1074 * 27 02 0A DC 89
 1A 20 \dx00000070
 \2psto 1A 20 \dx00000002
 \2r 1A 00 \dx00000000
@@ -6847,7 +6865,7 @@ A7 20 \dx000000FF
 \wx8000 // Return computed value
 
 // Name: @return_action_32
-1073 * 27 02 0A DB 89
+1075 * 27 02 0A DB 89
 1A 20 \dx00000075
 \2psto 1A 20 \dx00000002
 \2r 1A 00 \dx00000000
@@ -6855,7 +6873,7 @@ A7 20 \dx000000FF
 \wx8000 // Return computed value
 
 // Name: @return_action_33
-1074 * 27 02 0A DA 89
+1076 * 27 02 0A DA 89
 1A 20 \dx0000007A
 \2psto 1A 20 \dx00000002
 \2r 1A 00 \dx00000000
@@ -6863,7 +6881,7 @@ A7 20 \dx000000FF
 \wx8000 // Return computed value
 
 // Name: @return_action_34
-1075 * 27 02 0A D9 89
+1077 * 27 02 0A D9 89
 1A 20 \dx0000007F
 \2psto 1A 20 \dx00000002
 \2r 1A 00 \dx00000000
@@ -6871,7 +6889,7 @@ A7 20 \dx000000FF
 \wx8000 // Return computed value
 
 // Name: @return_action_35
-1076 * 27 02 0A D8 89
+1078 * 27 02 0A D8 89
 1A 20 \dx00000085
 \2psto 1A 20 \dx00000002
 \2r 1A 00 \dx00000000
@@ -6879,7 +6897,7 @@ A7 20 \dx000000FF
 \wx8000 // Return computed value
 
 // Name: @return_action_36
-1077 * 27 02 0A D7 89
+1079 * 27 02 0A D7 89
 1A 20 \dx0000008B
 \2psto 1A 20 \dx00000002
 \2r 1A 00 \dx00000000
@@ -6887,7 +6905,7 @@ A7 20 \dx000000FF
 \wx8000 // Return computed value
 
 // Name: @return_action_37
-1078 * 27 02 0A D6 89
+1080 * 27 02 0A D6 89
 1A 20 \dx00000091
 \2psto 1A 20 \dx00000002
 \2r 1A 00 \dx00000000
@@ -6895,7 +6913,7 @@ A7 20 \dx000000FF
 \wx8000 // Return computed value
 
 // Name: @return_action_38
-1079 * 27 02 0A D5 89
+1081 * 27 02 0A D5 89
 1A 20 \dx00000097
 \2psto 1A 20 \dx00000002
 \2r 1A 00 \dx00000000
@@ -6903,7 +6921,7 @@ A7 20 \dx000000FF
 \wx8000 // Return computed value
 
 // Name: @return_action_39
-1080 * 27 02 0A D4 89
+1082 * 27 02 0A D4 89
 1A 20 \dx0000009D
 \2psto 1A 20 \dx00000002
 \2r 1A 00 \dx00000000
@@ -6911,7 +6929,7 @@ A7 20 \dx000000FF
 \wx8000 // Return computed value
 
 // Name: @return_action_40
-1081 * 27 02 0A D3 89
+1083 * 27 02 0A D3 89
 1A 20 \dx000000A3
 \2psto 1A 20 \dx00000002
 \2r 1A 00 \dx00000000
@@ -6919,7 +6937,7 @@ A7 20 \dx000000FF
 \wx8000 // Return computed value
 
 // Name: @return_action_41
-1082 * 27 02 0A D2 89
+1084 * 27 02 0A D2 89
 1A 20 \dx000000A9
 \2psto 1A 20 \dx00000002
 \2r 1A 00 \dx00000000
@@ -6927,7 +6945,7 @@ A7 20 \dx000000FF
 \wx8000 // Return computed value
 
 // Name: @return_action_42
-1083 * 27 02 0A D1 89
+1085 * 27 02 0A D1 89
 1A 20 \dx000000AF
 \2psto 1A 20 \dx00000002
 \2r 1A 00 \dx00000000
@@ -6935,7 +6953,7 @@ A7 20 \dx000000FF
 \wx8000 // Return computed value
 
 // Name: @return_action_43
-1084 * 27 02 0A D0 89
+1086 * 27 02 0A D0 89
 1A 20 \dx000000B6
 \2psto 1A 20 \dx00000002
 \2r 1A 00 \dx00000000
@@ -6943,7 +6961,7 @@ A7 20 \dx000000FF
 \wx8000 // Return computed value
 
 // Name: @return_action_44
-1085 * 27 02 0A CF 89
+1087 * 27 02 0A CF 89
 1A 20 \dx000000BD
 \2psto 1A 20 \dx00000002
 \2r 1A 00 \dx00000000
@@ -6951,7 +6969,7 @@ A7 20 \dx000000FF
 \wx8000 // Return computed value
 
 // Name: @return_action_45
-1086 * 27 02 0A CE 89
+1088 * 27 02 0A CE 89
 1A 20 \dx000000C4
 \2psto 1A 20 \dx00000002
 \2r 1A 00 \dx00000000
@@ -6959,7 +6977,7 @@ A7 20 \dx000000FF
 \wx8000 // Return computed value
 
 // Name: @return_action_46
-1087 * 27 02 0A CD 89
+1089 * 27 02 0A CD 89
 1A 20 \dx000000CB
 \2psto 1A 20 \dx00000002
 \2r 1A 00 \dx00000000
@@ -6967,7 +6985,7 @@ A7 20 \dx000000FF
 \wx8000 // Return computed value
 
 // Name: @return_action_47
-1088 * 27 02 0A CC 89
+1090 * 27 02 0A CC 89
 1A 20 \dx000000D2
 \2psto 1A 20 \dx00000002
 \2r 1A 00 \dx00000000
@@ -6975,7 +6993,7 @@ A7 20 \dx000000FF
 \wx8000 // Return computed value
 
 // Name: @return_action_48
-1089 * 27 02 0A CB 89
+1091 * 27 02 0A CB 89
 1A 20 \dx000000D9
 \2psto 1A 20 \dx00000002
 \2r 1A 00 \dx00000000
@@ -6983,7 +7001,7 @@ A7 20 \dx000000FF
 \wx8000 // Return computed value
 
 // Name: @return_action_49
-1090 * 27 02 0A CA 89
+1092 * 27 02 0A CA 89
 1A 20 \dx000000E0
 \2psto 1A 20 \dx00000002
 \2r 1A 00 \dx00000000
@@ -6991,7 +7009,7 @@ A7 20 \dx000000FF
 \wx8000 // Return computed value
 
 // Name: @return_action_50
-1091 * 27 02 0A C9 89
+1093 * 27 02 0A C9 89
 1A 20 \dx000000E7
 \2psto 1A 20 \dx00000002
 \2r 1A 00 \dx00000000
@@ -6999,7 +7017,7 @@ A7 20 \dx000000FF
 \wx8000 // Return computed value
 
 // Name: @return_action_51
-1092 * 27 02 0A C8 89
+1094 * 27 02 0A C8 89
 1A 20 \dx000000EE
 \2psto 1A 20 \dx00000002
 \2r 1A 00 \dx00000000
@@ -7007,7 +7025,7 @@ A7 20 \dx000000FF
 \wx8000 // Return computed value
 
 // Name: @return_action_52
-1093 * 27 02 0A C7 89
+1095 * 27 02 0A C7 89
 1A 20 \dx000000F6
 \2psto 1A 20 \dx00000002
 \2r 1A 00 \dx00000000
@@ -7015,7 +7033,7 @@ A7 20 \dx000000FF
 \wx8000 // Return computed value
 
 // Name: @return_action_53
-1094 * 27 02 0A C6 89
+1096 * 27 02 0A C6 89
 1A 20 \dx000000FF
 \2psto 1A 20 \dx00000002
 \2r 1A 00 \dx00000000
@@ -7023,7 +7041,7 @@ A7 20 \dx000000FF
 \wx8000 // Return computed value
 
 // Name: industry_rcyc_depot_monthly_prod_change_2
-1095 * 544 02 0A C6 89
+1097 * 544 02 0A C6 89
 7D 01 00 \dxFFFFFFFF
 \b53
 \wx00F5 \dx00000000 \dx0000108E 	// 0 .. 4238: return [STORE_PERM(16, 2), 0]
@@ -7082,7 +7100,7 @@ A7 20 \dx000000FF
 \wx00C6 // default: return [STORE_PERM(255, 2), 0]
 
 // Name: industry_rcyc_depot_monthly_prod_change
-1096 * 30 02 0A C6 8A
+1098 * 30 02 0A C6 8A
 82 20 \dx0000FFFF
 \2sto 1A 00 \dx00000001
 \b1
@@ -7090,10 +7108,10 @@ A7 20 \dx000000FF
 \wx00C6 // default: industry_rcyc_depot_monthly_prod_change_2;
 
 // Name: rcyc_plant_produce_waste_plus_1
-1097 * 10 02 0A C7 01 80 81 82 83 84 85
+1099 * 10 02 0A C7 01 80 81 82 83 84 85
 
 // Name: rcyc_plant_produce_waste_plus_1@registers
-1098 * 116 02 0A C7 89
+1100 * 116 02 0A C7 89
 40 20 \dx0000FFFF
 \2sto 1A 20 \dx00000080
 \2r 41 20 \dx0000FFFF
@@ -7111,10 +7129,10 @@ A7 20 \dx000000FF
 \wx00C7 //
 
 // Name: rcyc_plant_produce_waste
-1099 * 10 02 0A C8 01 80 81 82 83 84 85
+1101 * 10 02 0A C8 01 80 81 82 83 84 85
 
 // Name: rcyc_plant_produce_waste@registers
-1100 * 100 02 0A C8 89
+1102 * 100 02 0A C8 89
 40 20 \dx0000FFFF
 \2sto 1A 20 \dx00000080
 \2r 41 20 \dx0000FFFF
@@ -7132,14 +7150,14 @@ A7 20 \dx000000FF
 \wx00C8 //
 
 // Name: industry_rcyc_plant_produce_256
-1101 * 24 02 0A C7 89
+1103 * 24 02 0A C7 89
 7C 01 00 \dxFFFFFFFF
 \b1
 \wx00C8 \dx00000000 \dx00000040 	// 0 .. 64: rcyc_plant_produce_waste;
 \wx00C7 // default: rcyc_plant_produce_waste_plus_1;
 
 // Name: industry_rcyc_plant_monthly_prod_change
-1102 * 44 02 0A C8 89
+1104 * 44 02 0A C8 89
 9C 20 \dx000000FF
 \2* 1A 20 \dx00000065
 \2/ 1A 20 \dx00000100
@@ -7149,35 +7167,35 @@ A7 20 \dx000000FF
 \wx8000 // default: return 0;
 
 // param[121] = (param[127] * 365)
-1103 * 9 0D 79 \D* 7F FF \dx0000016D
+1105 * 9 0D 79 \D* 7F FF \dx0000016D
 
 // param[120] = (param[127] / 4)
-1104 * 9 0D 78 \D/ 7F FF \dx00000004
+1106 * 9 0D 78 \D/ 7F FF \dx00000004
 
 // param[122] = (param[121] + param[120])
-1105 * 5 0D 7A \D+ 79 78
+1107 * 5 0D 7A \D+ 79 78
 
 // param[121] = (param[127] / 100)
-1106 * 9 0D 79 \D/ 7F FF \dx00000064
+1108 * 9 0D 79 \D/ 7F FF \dx00000064
 
 // param[123] = (param[122] - param[121])
-1107 * 5 0D 7B \D- 7A 79
+1109 * 5 0D 7B \D- 7A 79
 
 // param[122] = (param[127] / 400)
-1108 * 9 0D 7A \D/ 7F FF \dx00000190
+1110 * 9 0D 7A \D/ 7F FF \dx00000190
 
 // param[124] = (param[123] + param[122])
-1109 * 5 0D 7C \D+ 7B 7A
+1111 * 5 0D 7C \D+ 7B 7A
 
 // param[125] = (0 - param[124])
-1110 * 9 0D 7D \D- FF 7C \dx00000000
+1112 * 9 0D 7D \D- FF 7C \dx00000000
 
-1111 * 7 06
+1113 * 7 06
 7D 04 FF \wx000A
 FF
 
 // Name: rcyc_intro_year
-1112 * 55 02 0A C9 89
+1114 * 55 02 0A C9 89
 23 60 \dxFFFFFFFF \dx00000000 \dx00000001
 \2cmp 1A 20 \dx00000000
 \2< 1A 00 \dx00000001
@@ -7187,16 +7205,16 @@ FF
 \wx00FB // default: @CB_FAILED0A;
 
 // param[125] = 0
-1113 * 9 0D 7D \D= FF 00 \dx00000000
+1115 * 9 0D 7D \D= FF 00 \dx00000000
 
-1114 * 6 09 06 01 \70 00 01
+1116 * 6 09 06 01 \70 00 01
 
 // param[125] = 1
-1115 * 9 0D 7D \D= FF 00 \dx00000001
+1117 * 9 0D 7D \D= FF 00 \dx00000001
 
-1116 * 9 07 7D 04 \7= \dx00000000 02
+1118 * 9 07 7D 04 \7= \dx00000000 02
 
-1117 * 60 00 0B \b19 01 FF \wx003E
+1119 * 60 00 0B \b19 01 FF \wx003E
 09 \wxDC0A
 0A \wxDC0A
 0D \wxDC0B
@@ -7217,7 +7235,7 @@ FF
 17 "WSTE"
 08 3E
 
-1118 * 60 00 0B \b19 01 FF \wx003D
+1120 * 60 00 0B \b19 01 FF \wx003D
 09 \wxDC0D
 0A \wxDC0D
 0D \wxDC0E
@@ -7238,60 +7256,60 @@ FF
 17 "RCYC"
 08 3D
 
-1119 * 6 01 0B \b1 FF \wx0001
+1121 * 6 01 0B \b1 FF \wx0001
 
-1120 src/gfx/cargoicons.png 8bpp 210 70 10 10 0 0 normal
+1122 src/gfx/cargoicons.png 8bpp 210 70 10 10 0 0 normal
 
 // Name: cargoicon_recyclables - feature 0B
-1121 * 7 02 0B CA \b1 \b0
+1123 * 7 02 0B CA \b1 \b0
 \w0
 
 
-1122 * 9 07 7D 04 \7= \dx00000000 01
+1124 * 9 07 7D 04 \7= \dx00000000 01
 
-1123 * 7 03 0B 01 3D \b0
+1125 * 7 03 0B 01 3D \b0
 \wx00CA 	// cargoicon_recyclables;
 
-1124 * 9 09 7D 04 \7= \dx00000000 0F
+1126 * 9 09 7D 04 \7= \dx00000000 0F
 
 // param[124] = 4
-1125 * 9 0D 7C \D= FF 00 \dx00000004
+1127 * 9 0D 7C \D= FF 00 \dx00000004
 
 // param[123] = 0
-1126 * 9 0D 7B \D= FF 00 \dx00000000
+1128 * 9 0D 7B \D= FF 00 \dx00000000
 
-1127 * 6 09 07 01 \70 00 01
+1129 * 6 09 07 01 \70 00 01
 
 // param[123] = 1
-1128 * 9 0D 7B \D= FF 00 \dx00000001
+1130 * 9 0D 7B \D= FF 00 \dx00000001
 
-1129 * 9 09 7B 04 \7= \dx00000000 01
+1131 * 9 09 7B 04 \7= \dx00000000 01
 
 // param[124] = 0
-1130 * 9 0D 7C \D= FF 00 \dx00000000
+1132 * 9 0D 7C \D= FF 00 \dx00000000
 
 // param[123] = 6
-1131 * 9 0D 7B \D= FF 00 \dx00000006
+1133 * 9 0D 7B \D= FF 00 \dx00000006
 
 // param[122] = 0
-1132 * 9 0D 7A \D= FF 00 \dx00000000
+1134 * 9 0D 7A \D= FF 00 \dx00000000
 
-1133 * 6 09 07 01 \70 00 01
+1135 * 6 09 07 01 \70 00 01
 
 // param[122] = 1
-1134 * 9 0D 7A \D= FF 00 \dx00000001
+1136 * 9 0D 7A \D= FF 00 \dx00000001
 
-1135 * 9 09 7A 04 \7= \dx00000000 01
+1137 * 9 09 7A 04 \7= \dx00000000 01
 
 // param[123] = 0
-1136 * 9 0D 7B \D= FF 00 \dx00000000
+1138 * 9 0D 7B \D= FF 00 \dx00000000
 
-1137 * 12 06
-7C 01 FF \wx004C
-7B 01 FF \wx004E
+1139 * 12 06
+7C 01 FF \wx0051
+7B 01 FF \wx0053
 FF
 
-1138 * 92 00 0A \b19 01 FF \wx0006
+1140 * 97 00 0A \b20 01 FF \wx0006
 08 00
 0A \b1 \d22
 00 00 FE \wx0018
@@ -7311,6 +7329,7 @@ FF
 1D \dx00000000
 1E \dx00000000
 14 05
+1A \dx00008000
 17 00
 18 00
 20 \dxFFFFFFFF
@@ -7318,19 +7337,19 @@ FF
 1F \wxDC10
 24 \wxDC11
 
-1139 * 11 00 0A \b2 01 FF \wx0006
+1141 * 11 00 0A \b2 01 FF \wx0006
 21 3D
 22 40
 
 // Name: @action3_39
-1140 * 23 02 0A F9 89
+1142 * 23 02 0A F9 89
 18 00 \dx000000FF
 \b1
 \wx00F9 \dx00000001 \dx00000001 	// industry_rcyc_depot_produce_256;
 \wx00FB // @CB_FAILED0A;
 
 // Name: @return_action_0
-1141 * 27 02 0A CA 89
+1143 * 27 02 0A CA 89
 1A 20 \dx00000010
 \2psto 1A 20 \dx00000002
 \2r 1A 00 \dx00000010
@@ -7338,7 +7357,7 @@ FF
 \wx8000 // Return computed value
 
 // Name: @action3_40
-1142 * 73 02 0A CA 89
+1144 * 73 02 0A CA 89
 0C 00 \dx0000FFFF
 \b6
 \wx00F9 \dx00000000 \dx00000000 	// @action3_39;
@@ -7349,77 +7368,77 @@ FF
 \wx00CA \dx0000015F \dx0000015F 	// return [STORE_PERM(16, 2), 16]
 \wx00FB // @CB_FAILED0A;
 
-1143 * 9 07 7D 04 \7= \dx00000000 01
+1145 * 9 07 7D 04 \7= \dx00000000 01
 
-1144 * 7 03 0A 01 06 \b0
+1146 * 7 03 0A 01 06 \b0
 \wx00CA 	// @action3_40;
 
-1145 * 9 09 7D 04 \7= \dx00000000 11
+1147 * 9 09 7D 04 \7= \dx00000000 11
 
 // param[121] = 9
-1146 * 9 0D 79 \D= FF 00 \dx00000009
+1148 * 9 0D 79 \D= FF 00 \dx00000009
 
 // param[120] = 0
-1147 * 9 0D 78 \D= FF 00 \dx00000000
+1149 * 9 0D 78 \D= FF 00 \dx00000000
 
-1148 * 9 09 00 04 \7c \dx4C455453 01
+1150 * 9 09 00 04 \7c \dx4C455453 01
 
 // param[120] = 1
-1149 * 9 0D 78 \D= FF 00 \dx00000001
+1151 * 9 0D 78 \D= FF 00 \dx00000001
 
-1150 * 9 09 78 04 \7= \dx00000000 01
+1152 * 9 09 78 04 \7= \dx00000000 01
 
 // param[121] = 23
-1151 * 9 0D 79 \D= FF 00 \dx00000017
+1153 * 9 0D 79 \D= FF 00 \dx00000017
 
 // param[122] = (param[121] & 255)
-1152 * 9 0D 7A \D& 79 FF \dx000000FF
+1154 * 9 0D 7A \D& 79 FF \dx000000FF
 
 // param[123] = (param[122] << 8)
-1153 * 9 0D 7B \D<< 7A FF \dx00000008
+1155 * 9 0D 7B \D<< 7A FF \dx00000008
 
 // param[124] = (param[123] | 30)
-1154 * 9 0D 7C \D| 7B FF \dx0000001E
+1156 * 9 0D 7C \D| 7B FF \dx0000001E
 
 // param[123] = 3
-1155 * 9 0D 7B \D= FF 00 \dx00000003
+1157 * 9 0D 7B \D= FF 00 \dx00000003
 
 // param[122] = 0
-1156 * 9 0D 7A \D= FF 00 \dx00000000
+1158 * 9 0D 7A \D= FF 00 \dx00000000
 
-1157 * 6 09 07 01 \70 00 01
+1159 * 6 09 07 01 \70 00 01
 
 // param[122] = 1
-1158 * 9 0D 7A \D= FF 00 \dx00000001
+1160 * 9 0D 7A \D= FF 00 \dx00000001
 
-1159 * 9 09 7A 04 \7= \dx00000000 01
+1161 * 9 09 7A 04 \7= \dx00000000 01
 
 // param[123] = 0
-1160 * 9 0D 7B \D= FF 00 \dx00000000
+1162 * 9 0D 7B \D= FF 00 \dx00000000
 
 // param[122] = 3
-1161 * 9 0D 7A \D= FF 00 \dx00000003
+1163 * 9 0D 7A \D= FF 00 \dx00000003
 
 // param[121] = 0
-1162 * 9 0D 79 \D= FF 00 \dx00000000
+1164 * 9 0D 79 \D= FF 00 \dx00000000
 
-1163 * 6 09 07 01 \70 00 01
+1165 * 6 09 07 01 \70 00 01
 
 // param[121] = 1
-1164 * 9 0D 79 \D= FF 00 \dx00000001
+1166 * 9 0D 79 \D= FF 00 \dx00000001
 
-1165 * 9 09 79 04 \7= \dx00000000 01
+1167 * 9 09 79 04 \7= \dx00000000 01
 
 // param[122] = 0
-1166 * 9 0D 7A \D= FF 00 \dx00000000
+1168 * 9 0D 7A \D= FF 00 \dx00000000
 
-1167 * 17 06
+1169 * 17 06
 7C 02 FF \wx0034
-7B 01 FF \wx0055
-7A 01 FF \wx0057
+7B 01 FF \wx0050
+7A 01 FF \wx0052
 FF
 
-1168 * 101 00 0A \b21 01 FF \wx0007
+1170 * 96 00 0A \b20 01 FF \wx0007
 08 06
 0A \b1 \d22
 00 00 FE \wx001C
@@ -7440,7 +7459,6 @@ FF
 1E \dx00000000
 14 05
 16 01 06 0C
-1A \dx00008000
 17 00
 18 00
 20 \dxFFFFFFFF
@@ -7449,113 +7467,113 @@ FF
 24 \wxDC13
 
 // param[124] = (param[131] & 255)
-1169 * 9 0D 7C \D& 83 FF \dx000000FF
+1171 * 9 0D 7C \D& 83 FF \dx000000FF
 
-1170 * 9 09 7C 04 \7! \dx00000001 0B
+1172 * 9 09 7C 04 \7! \dx00000001 0B
 
 // param[120] = 9
-1171 * 9 0D 78 \D= FF 00 \dx00000009
+1173 * 9 0D 78 \D= FF 00 \dx00000009
 
 // param[119] = 0
-1172 * 9 0D 77 \D= FF 00 \dx00000000
+1174 * 9 0D 77 \D= FF 00 \dx00000000
 
-1173 * 9 09 00 04 \7c \dx52504150 01
+1175 * 9 09 00 04 \7c \dx52504150 01
 
 // param[119] = 1
-1174 * 9 0D 77 \D= FF 00 \dx00000001
+1176 * 9 0D 77 \D= FF 00 \dx00000001
 
-1175 * 9 09 77 04 \7= \dx00000000 01
+1177 * 9 09 77 04 \7= \dx00000000 01
 
 // param[120] = 17
-1176 * 9 0D 78 \D= FF 00 \dx00000011
+1178 * 9 0D 78 \D= FF 00 \dx00000011
 
 // param[121] = (param[120] & 255)
-1177 * 9 0D 79 \D& 78 FF \dx000000FF
+1179 * 9 0D 79 \D& 78 FF \dx000000FF
 
 // param[122] = (param[121] << 8)
-1178 * 9 0D 7A \D<< 79 FF \dx00000008
+1180 * 9 0D 7A \D<< 79 FF \dx00000008
 
 // param[123] = (param[122] | 30)
-1179 * 9 0D 7B \D| 7A FF \dx0000001E
+1181 * 9 0D 7B \D| 7A FF \dx0000001E
 
-1180 * 7 06
+1182 * 7 06
 7B 02 FF \wx0008
 FF
 
-1181 * 14 00 0A \b2 01 FF \wx0007
+1183 * 14 00 0A \b2 01 FF \wx0007
 10 \wx0000
 16 01 07 10
 
 // param[124] = (param[131] & 255)
-1182 * 9 0D 7C \D& 83 FF \dx000000FF
+1184 * 9 0D 7C \D& 83 FF \dx000000FF
 
-1183 * 9 09 7C 04 \7! \dx00000002 10
+1185 * 9 09 7C 04 \7! \dx00000002 10
 
 // param[120] = 9
-1184 * 9 0D 78 \D= FF 00 \dx00000009
+1186 * 9 0D 78 \D= FF 00 \dx00000009
 
 // param[119] = 0
-1185 * 9 0D 77 \D= FF 00 \dx00000000
+1187 * 9 0D 77 \D= FF 00 \dx00000000
 
-1186 * 9 09 00 04 \7c \dx45524F43 01
+1188 * 9 09 00 04 \7c \dx45524F43 01
 
 // param[119] = 1
-1187 * 9 0D 77 \D= FF 00 \dx00000001
+1189 * 9 0D 77 \D= FF 00 \dx00000001
 
-1188 * 9 09 77 04 \7= \dx00000000 01
+1190 * 9 09 77 04 \7= \dx00000000 01
 
 // param[120] = 4
-1189 * 9 0D 78 \D= FF 00 \dx00000004
+1191 * 9 0D 78 \D= FF 00 \dx00000004
 
 // param[119] = 0
-1190 * 9 0D 77 \D= FF 00 \dx00000000
+1192 * 9 0D 77 \D= FF 00 \dx00000000
 
-1191 * 9 09 00 04 \7c \dx52504F43 01
+1193 * 9 09 00 04 \7c \dx52504F43 01
 
 // param[119] = 1
-1192 * 9 0D 77 \D= FF 00 \dx00000001
+1194 * 9 0D 77 \D= FF 00 \dx00000001
 
-1193 * 9 09 77 04 \7= \dx00000000 01
+1195 * 9 09 77 04 \7= \dx00000000 01
 
 // param[120] = 3
-1194 * 9 0D 78 \D= FF 00 \dx00000003
+1196 * 9 0D 78 \D= FF 00 \dx00000003
 
 // param[121] = (param[120] & 255)
-1195 * 9 0D 79 \D& 78 FF \dx000000FF
+1197 * 9 0D 79 \D& 78 FF \dx000000FF
 
 // param[122] = (param[121] << 8)
-1196 * 9 0D 7A \D<< 79 FF \dx00000008
+1198 * 9 0D 7A \D<< 79 FF \dx00000008
 
 // param[123] = (param[122] | 30)
-1197 * 9 0D 7B \D| 7A FF \dx0000001E
+1199 * 9 0D 7B \D| 7A FF \dx0000001E
 
-1198 * 7 06
+1200 * 7 06
 7B 02 FF \wx0008
 FF
 
-1199 * 14 00 0A \b2 01 FF \wx0007
+1201 * 14 00 0A \b2 01 FF \wx0007
 10 \wx0000
 16 01 17 10
 
-1200 * 2 10 11
+1202 * 2 10 11
 
-1201 * 2 10 10
+1203 * 2 10 10
 
-1202 * 9 07 7D 04 \7= \dx00000000 01
+1204 * 9 07 7D 04 \7= \dx00000000 01
 
-1203 * 11 00 0A \b2 01 FF \wx0007
+1205 * 11 00 0A \b2 01 FF \wx0007
 21 3D
 22 48
 
 // Name: @action3_41
-1204 * 23 02 0A C7 89
+1206 * 23 02 0A C7 89
 18 00 \dx000000FF
 \b1
 \wx00C7 \dx00000001 \dx00000001 	// industry_rcyc_plant_produce_256;
 \wx00FB // @CB_FAILED0A;
 
 // Name: @return_action_1
-1205 * 93 02 0A CA 89
+1207 * 93 02 0A CA 89
 A7 20 \dx000000FF
 \2cmp 1A 20 \dx00000010
 \2& 1A 20 \dx00000001
@@ -7572,7 +7590,7 @@ A7 20 \dx000000FF
 \wx8000 // Return computed value
 
 // Name: @return_action_2
-1206 * 27 02 0A C6 89
+1208 * 27 02 0A C6 89
 1A 20 \dx00000000
 \2psto 1A 20 \dx00000001
 \2r 1A 00 \dx00000010
@@ -7580,7 +7598,7 @@ A7 20 \dx000000FF
 \wx8000 // Return computed value
 
 // Name: @action3_42
-1207 * 83 02 0A FB 89
+1209 * 83 02 0A FB 89
 0C 00 \dx0000FFFF
 \b7
 \wx00C7 \dx00000000 \dx00000000 	// @action3_41;
@@ -7592,8 +7610,8 @@ A7 20 \dx000000FF
 \wx00C6 \dx0000015F \dx0000015F 	// return [STORE_PERM(0, 1), 16]
 \wx00FB // @CB_FAILED0A;
 
-1208 * 9 07 7D 04 \7= \dx00000000 01
+1210 * 9 07 7D 04 \7= \dx00000000 01
 
-1209 * 7 03 0A 01 07 \b0
+1211 * 7 03 0A 01 07 \b0
 \wx00FB 	// @action3_42;
 

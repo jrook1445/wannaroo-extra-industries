@@ -98,6 +98,17 @@ grf {
 	}
 
 	param {
+		param_max_rcyc_prod_rate {
+			type: int;
+			min_value: 16;
+			max_value: 255;
+			def_value: 64;
+			name: string(STR_PARAM_NAME_RCYC_MAX_PROD);
+			desc: string(STR_PARAM_DESC_RCYC_MAX_PROD);
+		}
+	}
+
+	param {
 		param_closure_protect_time {
 			type: int;
 			min_value: 0;

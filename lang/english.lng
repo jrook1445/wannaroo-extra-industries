@@ -72,6 +72,9 @@ STR_PARAM_DESC_ENABLE_DESAL_PLANT		    :Accepts: nothing{}Produces*: chemicals (
 STR_PARAM_NAME_ENABLE_RCYC                  :Recycling Chain
 STR_PARAM_DESC_ENABLE_RCYC                  :available from 1950
 
+STR_PARAM_NAME_RCYC_MAX_PROD                :Max RCYC prod rate
+STR_PARAM_DESC_RCYC_MAX_PROD                :Maximum recyclables produced each production tick: default 64, max 255, min 16.{}{}RCYC production will be the minimum of either the population-based rate or this parameter.
+
 STR_PARAM_NAME_MANUAL_PLACEMENT				:Manual placement
 STR_PARAM_DESC_MANUAL_PLACEMENT				:Off (default): industries are placed on map generation and can appear in game. On: industries must be manually placed.
 

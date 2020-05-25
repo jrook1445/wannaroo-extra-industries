@@ -21,6 +21,13 @@ spriteset(cargoicon_recyclables) {
 	[10 + 20 * 10, 10 + 20 * 3, 10, 10, 0, 0, "src/gfx/cargoicons.png"]
 }
 
+// wrong palette, waste cargoicon is pink in-game
+/*
+spriteset(cargoicon_waste) {
+	[230, 10, 10, 10, 0, 0, "src/gfx/cargoicons.pcx"]
+}
+*/
+
 /* recycling depot */
 
 tilelayout jrrcycdepot_tilelayout1 {
@@ -67,7 +74,7 @@ INDUSTRY_LOCATION_SWITCHES(IND_RCYC_DEPOT)
 
 INDUSTRY_LOCATION_SWITCHES(IND_RCYC_PLANT)
 
-produce(industry_rcyc_depot_produce_256, 0, 0, 0, LOAD_PERM(0x02) + extra_callback_info1%6, 0, 0);
+produce(industry_rcyc_depot_produce_256, 0, 0, 0, min((LOAD_PERM(0x02) + extra_callback_info1%6), (param_max_rcyc_prod_rate + extra_callback_info1%6)), 0, 0);
 
 switch (FEAT_INDUSTRIES, SELF, industry_rcyc_depot_monthly_prod_change_2, LOAD_TEMP(1)) {
 	0..4238: return [STORE_PERM(16, 0x02), CB_RESULT_IND_PROD_NO_CHANGE];
@@ -217,6 +224,7 @@ if (param_enable_rcyc) {
 		    input_multiplier_2:     [0, 0];
 		    input_multiplier_3:     [0, 0];
 			min_cargo_distr:	    5;
+            spec_flags:             bitmask(IND_FLAG_RANDOM_BITS_IN_PRODUCTION_CALLBACK);
 			prob_map_gen:		    param_manual_placement ? 0 : 4;
 			prob_in_game:		    param_manual_placement ? 0 : 6;
 			prospect_chance:	    1.0;
@@ -250,7 +258,6 @@ if (param_enable_rcyc) {
 		    input_multiplier_3:     [0, 0];
 			min_cargo_distr:	    5;
 			conflicting_ind_types:	[INDUSTRYTYPE_POWER_PLANT, INDUSTRYTYPE_TEMPERATE_FACTORY, INDUSTRYTYPE_TEMPERATE_BANK];
-			spec_flags:             bitmask(IND_FLAG_RANDOM_BITS_IN_PRODUCTION_CALLBACK);
 			prob_map_gen:		    param_manual_placement ? 0 : 3;
 			prob_in_game:		    param_manual_placement ? 0 : 3;
 			prospect_chance:	    1.0;
